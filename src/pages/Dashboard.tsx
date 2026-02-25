@@ -1,7 +1,9 @@
 import { Ship, FileText, Receipt, Package, TrendingUp, TrendingDown, ArrowRight, Clock, MapPin } from 'lucide-react';
 import { KPICard } from '@/components/ui/kpi-card';
 import { StatusBadge } from '@/components/ui/status-badge';
-import { formatCurrency } from '@/lib/utils';
+
+const formatCurrency = (amount: number, currency = 'USD'): string =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
 
 // Mock data for dashboard
 const recentShipments = [

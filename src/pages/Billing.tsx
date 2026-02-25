@@ -1,7 +1,9 @@
 import { Receipt, Plus, Filter } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
-import { formatCurrency } from '@/lib/utils';
+
+const formatCurrency = (amount: number, currency = 'USD'): string =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
 
 const mockInvoices = [
   { id: 'INV-0890', client: 'Acme Corp', shipment: 'SHP-2024-001', amount: 12500, currency: 'USD', status: 'paid', dueDate: '2026-02-15' },

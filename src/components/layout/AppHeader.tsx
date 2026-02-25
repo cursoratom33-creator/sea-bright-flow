@@ -1,6 +1,8 @@
 import { Bell, Search, User } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
-import { getInitials } from '@/lib/utils';
+
+const getInitials = (firstName: string, lastName: string): string =>
+  `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
 
 export function AppHeader() {
   const user = useAuthStore((s) => s.user);
