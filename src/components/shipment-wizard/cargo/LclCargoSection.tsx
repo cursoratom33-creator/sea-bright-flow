@@ -144,7 +144,7 @@ export default function LclCargoSection() {
                                 className="w-20 h-9"
                                 placeholder="0.0"
                                 {...f}
-                                onChange={(e) => f.onChange(Number(e.target.value))}
+                                onChange={(e) => { f.onChange(Number(e.target.value)); setTimeout(() => recalculate(index), 0); }}
                               />
                             </FormControl>
                           </div>
