@@ -229,7 +229,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
         )}
       />
 
-      {activeParty && allAddresses.length > 0 && (
+      {!hideAddress && activeParty && allAddresses.length > 0 && (
         <div className="mt-3 space-y-2">
           <div className="flex items-center gap-2">
             <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
