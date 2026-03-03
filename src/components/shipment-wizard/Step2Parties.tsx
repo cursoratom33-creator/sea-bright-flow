@@ -5,11 +5,11 @@ import { Users, Building2, UserCheck, Briefcase } from 'lucide-react';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
 const MOCK_PARTIES = [
-  { id: 'P001', name: 'ABC Exports Ltd.' },
-  { id: 'P002', name: 'Global Traders LLC.' },
-  { id: 'P003', name: 'Pacific Imports Inc.' },
-  { id: 'P004', name: 'Euro Freight GmbH' },
-  { id: 'P005', name: 'Silk Road Trading Co.' },
+  { id: 'P001', name: 'ABC Exports Ltd.', address: '12 Marine Drive, Mumbai 400001, India' },
+  { id: 'P002', name: 'Global Traders LLC.', address: '45 Sheikh Zayed Rd, Dubai, UAE' },
+  { id: 'P003', name: 'Pacific Imports Inc.', address: '890 Harbor Blvd, Long Beach, CA 90802, USA' },
+  { id: 'P004', name: 'Euro Freight GmbH', address: 'Hafenstr. 22, 20457 Hamburg, Germany' },
+  { id: 'P005', name: 'Silk Road Trading Co.', address: '168 Pudong Ave, Shanghai 200120, China' },
 ];
 
 function PartyField({ name, idName, label, icon: Icon, required = false }: {
