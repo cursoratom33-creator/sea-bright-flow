@@ -91,7 +91,7 @@ export default function NewShipmentPage() {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="animate-fade-in-up">
         {/* Sticky Header */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border pb-4 mb-6 -mx-1 px-1 pt-1">
+        <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border pb-4 mb-6 -mx-1 px-1 pt-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Button type="button" variant="ghost" size="icon" onClick={() => navigate('/shipments')}>
