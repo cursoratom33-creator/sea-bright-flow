@@ -73,7 +73,7 @@ interface PartyFieldProps {
   gstFieldName?: keyof ShipmentFormData;
 }
 
-export default function PartyField({ name, idName, label, icon: Icon, required = false, hideAddress = false }: PartyFieldProps) {
+export default function PartyField({ name, idName, label, icon: Icon, required = false, hideAddress = false, showGst = false, gstFieldName }: PartyFieldProps) {
   const { control, setValue, watch } = useFormContext<ShipmentFormData>();
   const currentName = watch(name);
   const matchedParty = MOCK_PARTIES.find((p) => p.name === currentName);
