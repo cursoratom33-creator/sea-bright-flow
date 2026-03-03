@@ -126,15 +126,6 @@ export default function NewShipmentPage() {
             <Step5Charges />
             <Step6Review />
 
-            {/* Bottom Submit */}
-            <div className="flex items-center justify-end gap-3 pt-4 pb-8 border-t border-border">
-              <Button type="button" variant="outline" onClick={handleSaveDraft}>
-                <Save className="mr-1.5 h-4 w-4" /> Save Draft
-              </Button>
-              <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Ship className="mr-1.5 h-4 w-4" /> Create Shipment
-              </Button>
-            </div>
           </div>
 
           {/* Sticky Summary Sidebar */}
