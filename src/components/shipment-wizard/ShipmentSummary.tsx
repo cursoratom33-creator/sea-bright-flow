@@ -116,25 +116,21 @@ export default function ShipmentSummary({ currentStep }: Props) {
         )}
 
         {/* Cargo */}
-        {(containerCount || packageCount || totalWeight > 0) && (
+        {(containerCount || packageCount || totalWeight > 0 || totalVolume > 0) && (
           <div>
             <div className="flex items-center gap-1.5 mb-2">
               <Package className="h-3.5 w-3.5 text-primary" />
               <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Cargo</span>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-1.5">
               {containerCount !== undefined && containerCount > 0 && (
-                <MiniStat label="Containers" value={String(containerCount)} />
+                <SummaryRow label="Containers" value={String(containerCount)} />
               )}
               {packageCount !== undefined && packageCount > 0 && (
-                <MiniStat label="Packages" value={String(packageCount)} />
+                <SummaryRow label="Packages" value={String(packageCount)} />
               )}
-              {totalWeight > 0 && (
-                <MiniStat label="Weight" value={`${totalWeight.toFixed(1)} KG`} />
-              )}
-              {totalVolume > 0 && (
-                <MiniStat label="Volume" value={`${totalVolume.toFixed(2)} CBM`} />
-              )}
+              <SummaryRow label="Total Gross Wt" value={`${totalWeight.toFixed(2)} KG`} />
+              <SummaryRow label="Total Volume" value={`${totalVolume.toFixed(4)} CBM`} />
             </div>
           </div>
         )}
