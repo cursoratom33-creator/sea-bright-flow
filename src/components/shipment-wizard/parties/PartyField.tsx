@@ -124,7 +124,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
       id: newId,
       name: newPartyName.trim(),
       addresses: newPartyAddress.trim()
-        ? [{ id: `${newId}-A001`, label: 'Main Office', address: newPartyAddress.trim() }]
+        ? [{ id: `${newId}-A001`, label: 'Main Office', address: newPartyAddress.trim(), contactNumber: newPartyContact.trim(), email: newPartyEmail.trim() }]
         : [],
     };
     setCustomParties(prev => [...prev, newParty]);
@@ -133,16 +133,20 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
     setSelectedAddressId(newParty.addresses[0]?.id || '');
     setNewPartyName('');
     setNewPartyAddress('');
+    setNewPartyContact('');
+    setNewPartyEmail('');
     setShowAddPartyDialog(false);
   };
 
   const handleAddAddress = () => {
     if (!newLabel.trim() || !newAddress.trim() || !activeParty) return;
     const newId = `${activeParty.id}-custom-${Date.now()}`;
-    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim() }]);
+    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim() }]);
     setSelectedAddressId(newId);
     setNewLabel('');
     setNewAddress('');
+    setNewContactNumber('');
+    setNewEmail('');
     setShowAddDialog(false);
   };
 
