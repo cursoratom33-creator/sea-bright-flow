@@ -172,6 +172,6 @@ export const WIZARD_STEPS: WizardStep[] = [
   { id: 2, title: 'Parties', description: 'Customers & agents' },
   { id: 3, title: 'Routing', description: 'Ports & schedule' },
   { id: 4, title: 'Cargo', description: 'Goods & containers' },
-  { id: 5, title: 'Commercial', description: 'Costs & revenue' },
-  { id: 6, title: 'Review', description: 'Documents & submit' },
+  { id: 5, title: 'Documents', description: 'B/L & review' },
+  { id: 6, title: 'Commercial', description: 'Costs & revenue' },
 ];
