@@ -147,6 +147,7 @@ export const shipmentFormSchema = z.object({
   ...step4Schema.shape,
   ...step5Schema.shape,
   ...step6Schema.shape,
+  confirmNotDangerous: z.boolean().default(false),
 });
 
 export type Step1Data = z.infer<typeof step1Schema>;
