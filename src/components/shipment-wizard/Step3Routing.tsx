@@ -132,7 +132,7 @@ export default function Step3Routing() {
             name="carrier"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Carrier <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>Carrier</FormLabel>
                 <FormControl><Input placeholder="Search carrier..." {...field} value={typeof field.value === 'string' ? field.value : ''} list="carriers-list" /></FormControl>
                 <FormMessage />
               </FormItem>
