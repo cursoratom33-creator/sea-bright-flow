@@ -17,6 +17,7 @@ interface PartyAddress {
   address: string;
   contactNumber: string;
   email: string;
+  gstNumber?: string;
 }
 
 interface MockParty {
@@ -87,6 +88,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const [newAddress, setNewAddress] = useState('');
   const [newContactNumber, setNewContactNumber] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const [newGstNumber, setNewGstNumber] = useState('');
   const [newPartyName, setNewPartyName] = useState('');
   const [newPartyAddress, setNewPartyAddress] = useState('');
   const [newPartyContact, setNewPartyContact] = useState('');
@@ -144,12 +146,13 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const handleAddAddress = () => {
     if (!newLabel.trim() || !newAddress.trim() || !activeParty) return;
     const newId = `${activeParty.id}-custom-${Date.now()}`;
-    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim() }]);
+    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim(), gstNumber: newGstNumber.trim() }]);
     setSelectedAddressId(newId);
     setNewLabel('');
     setNewAddress('');
     setNewContactNumber('');
     setNewEmail('');
+    setNewGstNumber('');
     setShowAddDialog(false);
   };
 
@@ -275,6 +278,17 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                     <Plus className="h-3.5 w-3.5" />
                     Add New Address
                   </button>
+                  <button
+                    type="button"
+                    className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-xs text-muted-foreground hover:bg-accent cursor-pointer"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      console.log('Manage All addresses for', activeParty?.name);
+                    }}
+                  >
+                    <Settings2 className="h-3.5 w-3.5" />
+                    Manage All
+                  </button>
                 </div>
               </SelectContent>
             </Select>
@@ -293,9 +307,15 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                   <Mail className="h-3 w-3 text-muted-foreground" />
                   <span className="text-xs text-muted-foreground">{selectedAddress.email}</span>
                 </div>
+               )}
+              {selectedAddress.gstNumber && (
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-medium text-muted-foreground">GST:</span>
+                  <span className="text-xs text-muted-foreground">{selectedAddress.gstNumber}</span>
+                </div>
               )}
             </div>
-      )}
+          )}
 
       {showGst && gstFieldName && activeParty && (
         <div className="mt-3">
@@ -338,6 +358,10 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
             <div>
               <FormLabel className="text-xs">Email</FormLabel>
               <Input placeholder="e.g. office@company.com" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">GST Number</FormLabel>
+              <Input placeholder="e.g. 27AABCU9603R1ZM" value={newGstNumber} onChange={(e) => setNewGstNumber(e.target.value)} className="mt-1" />
             </div>
           </div>
           <DialogFooter>
