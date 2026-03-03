@@ -53,10 +53,10 @@ export const step3Schema = z.object({
   finalDestination: z.string().optional(),
   vesselName: z.string().optional(),
   voyageNo: z.string().optional(),
-  etd: z.string().min(1, 'ETD is required'),
-  eta: z.string().min(1, 'ETA is required'),
+  etd: z.string().optional(),
+  eta: z.string().optional(),
   cutOffDate: z.string().optional(),
-  carrier: z.string().min(1, 'Carrier is required'),
+  carrier: z.string().optional(),
 }).refine(data => data.portOfLoading !== data.portOfDischarge, {
   message: 'POL and POD cannot be the same',
   path: ['portOfDischarge'],
