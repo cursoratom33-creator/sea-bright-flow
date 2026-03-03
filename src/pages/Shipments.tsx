@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Ship, Plus, Filter, Download } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,7 @@ const mockShipments = [
 ];
 
 export default function ShipmentsPage() {
+  const navigate = useNavigate();
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex items-center justify-between">
@@ -26,7 +28,7 @@ export default function ShipmentsPage() {
           <Button variant="outline" size="sm">
             <Download className="mr-1.5 h-4 w-4" /> Export
           </Button>
-          <Button size="sm">
+          <Button size="sm" onClick={() => navigate('/shipments/new')}>
             <Plus className="mr-1.5 h-4 w-4" /> New Shipment
           </Button>
         </div>
