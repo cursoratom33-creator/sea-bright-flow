@@ -143,27 +143,19 @@ export const step6Schema = z.object({
   nonNegotiableBLCount: z.number().min(0).default(0),
 }).refine(data => {
   if (data.hblRequired) {
-    return (data.originalBLCount + data.nonNegotiableBLCount) <= 3;
+    return data.originalBLCount > 0 && data.originalBLCount <= 3;
   }
   return true;
 }, {
-  message: 'Maximum total B/L copies allowed is 3.',
-  path: ['nonNegotiableBLCount'],
-}).refine(data => {
-  if (data.hblRequired) {
-    return data.originalBLCount > 0;
-  }
-  return true;
-}, {
-  message: 'Original B/L Count is required',
+  message: 'Original B/L Count must be between 1 and 3',
   path: ['originalBLCount'],
 }).refine(data => {
   if (data.hblRequired) {
-    return data.nonNegotiableBLCount > 0;
+    return data.nonNegotiableBLCount > 0 && data.nonNegotiableBLCount <= 3;
   }
   return true;
 }, {
-  message: 'Non-Negotiable B/L Count is required',
+  message: 'Non-Negotiable B/L Count must be between 1 and 3',
   path: ['nonNegotiableBLCount'],
 });
 
@@ -174,7 +166,7 @@ export const shipmentFormSchema = z.object({
   ...step3Schema.innerType().innerType().shape,
   ...step4Schema.shape,
   ...step5Schema.shape,
-  ...step6Schema.innerType().innerType().innerType().shape,
+  ...step6Schema.innerType().innerType().shape,
   confirmNotDangerous: z.boolean().default(false),
 });
 

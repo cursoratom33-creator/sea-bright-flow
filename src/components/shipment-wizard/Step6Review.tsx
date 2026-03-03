@@ -118,7 +118,7 @@ export default function Step6Review() {
                             max={3}
                             className="w-full"
                             {...field}
-                            onChange={(e) => field.onChange(Number(e.target.value))}
+                            onChange={(e) => field.onChange(Math.min(3, Math.max(0, Number(e.target.value))))}
                           />
                         </FormControl>
                         <FormMessage />
@@ -134,19 +134,13 @@ export default function Step6Review() {
                             max={3}
                             className="w-full"
                             {...field}
-                            onChange={(e) => field.onChange(Number(e.target.value))}
+                            onChange={(e) => field.onChange(Math.min(3, Math.max(0, Number(e.target.value))))}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     } />
                   </div>
-
-                  {totalCopies > 3 && (
-                    <p className="text-sm font-medium text-destructive">
-                      Maximum total B/L copies allowed is 3.
-                    </p>
-                  )}
                 </div>
               )}
             </div>
