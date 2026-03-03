@@ -50,17 +50,6 @@ export default function Step2Parties() {
           />
           <FormField
             control={control}
-            name="bookingNo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Booking No {shipmentType === 'FCL' && <span className="text-destructive">*</span>}</FormLabel>
-                <FormControl><Input placeholder="Booking number" {...field} value={typeof field.value === 'string' ? field.value : ''} /></FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={control}
             name="contractNo"
             render={({ field }) => (
               <FormItem>
