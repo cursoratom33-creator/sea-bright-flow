@@ -3,7 +3,6 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/comp
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Button } from '@/components/ui/button';
 import { Plus, Trash2, Package, Ruler } from 'lucide-react';
 import { PACKAGE_TYPES, DIMENSION_UNITS, type ShipmentFormData } from '@/types/shipment-form.types';
 
