@@ -166,7 +166,7 @@ export const shipmentFormSchema = z.object({
   ...step3Schema.innerType().innerType().shape,
   ...step4Schema.shape,
   ...step5Schema.shape,
-  ...step6Schema.innerType().innerType().innerType().shape,
+  ...step6Schema.innerType().innerType().shape,
   confirmNotDangerous: z.boolean().default(false),
 });
 
