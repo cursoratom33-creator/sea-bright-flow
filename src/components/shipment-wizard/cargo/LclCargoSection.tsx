@@ -10,6 +10,23 @@ export default function LclCargoSection() {
   const { control, watch, setValue } = useFormContext<ShipmentFormData>();
   const { fields, append, remove } = useFieldArray({ control, name: 'lclCargo' });
 
+  const recalculate = (index: number) => {
+    const l = watch(`lclCargo.${index}.length`) || 0;
+    const b = watch(`lclCargo.${index}.breadth`) || 0;
+    const h = watch(`lclCargo.${index}.height`) || 0;
+    const unit = watch(`lclCargo.${index}.dimensionUnit`) || 'CM';
+    const wpp = watch(`lclCargo.${index}.weightPerPackage`) || 0;
+    const pkgs = watch(`lclCargo.${index}.numberOfPackages`) || 0;
+
+    // Convert to meters then calc CBM
+    const factor = unit === 'M' ? 1 : unit === 'CM' ? 0.01 : unit === 'MM' ? 0.001 : 0.0254;
+    const cbm = parseFloat(((l * factor) * (b * factor) * (h * factor) * pkgs).toFixed(4));
+    const gw = parseFloat((wpp * pkgs).toFixed(2));
+
+    setValue(`lclCargo.${index}.volume`, cbm);
+    setValue(`lclCargo.${index}.grossWeight`, gw);
+  };
+
   return (
     <div className="space-y-4">
       {fields.map((field, index) => {
@@ -108,7 +125,7 @@ export default function LclCargoSection() {
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-card text-muted-foreground hover:bg-muted'
                         }`}
-                        onClick={() => setValue(`lclCargo.${index}.dimensionUnit`, unit)}
+                        onClick={() => { setValue(`lclCargo.${index}.dimensionUnit`, unit); setTimeout(() => recalculate(index), 0); }}
                       >
                         {unit}
                       </button>
@@ -127,7 +144,7 @@ export default function LclCargoSection() {
                                 className="w-20 h-9"
                                 placeholder="0.0"
                                 {...f}
-                                onChange={(e) => f.onChange(Number(e.target.value))}
+                                onChange={(e) => { f.onChange(Number(e.target.value)); setTimeout(() => recalculate(index), 0); }}
                               />
                             </FormControl>
                           </div>
@@ -143,28 +160,28 @@ export default function LclCargoSection() {
                 <FormField control={control} name={`lclCargo.${index}.weightPerPackage`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">Wt/Pkg (KG)</FormLabel>
-                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => { f.onChange(Number(e.target.value)); setTimeout(() => recalculate(index), 0); }} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={control} name={`lclCargo.${index}.numberOfPackages`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">No. of Pkgs</FormLabel>
-                    <FormControl><Input type="number" min={1} className="h-9" placeholder="1" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" min={1} className="h-9" placeholder="1" {...f} onChange={(e) => { f.onChange(Number(e.target.value)); setTimeout(() => recalculate(index), 0); }} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={control} name={`lclCargo.${index}.grossWeight`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">Gross Wt (KG)</FormLabel>
-                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" step="0.01" className="h-9 bg-muted/50" readOnly value={f.value} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={control} name={`lclCargo.${index}.volume`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">Volume (CBM)</FormLabel>
-                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" step="0.01" className="h-9 bg-muted/50" readOnly value={f.value} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
