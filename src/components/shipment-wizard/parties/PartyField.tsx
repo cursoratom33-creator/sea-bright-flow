@@ -17,6 +17,7 @@ interface PartyAddress {
   address: string;
   contactNumber: string;
   email: string;
+  gstNumber?: string;
 }
 
 interface MockParty {
