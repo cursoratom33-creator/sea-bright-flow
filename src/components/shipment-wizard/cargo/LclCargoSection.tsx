@@ -160,7 +160,7 @@ export default function LclCargoSection() {
                 <FormField control={control} name={`lclCargo.${index}.weightPerPackage`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">Wt/Pkg (KG)</FormLabel>
-                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => { f.onChange(Number(e.target.value)); setTimeout(() => recalculate(index), 0); }} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
