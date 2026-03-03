@@ -29,40 +29,39 @@ const MOCK_PARTIES: MockParty[] = [
   {
     id: 'P001', name: 'ABC Exports Ltd.',
     addresses: [
-      { id: 'A001', label: 'Head Office', address: '12 Marine Drive, Mumbai 400001, India' },
-      { id: 'A002', label: 'Branch Office', address: '56 MG Road, Pune 411001, India' },
-      { id: 'A003', label: 'Warehouse', address: 'Plot 7, JNPT SEZ, Navi Mumbai 400707, India' },
+      { id: 'A001', label: 'Head Office', address: '12 Marine Drive, Mumbai 400001, India', contactNumber: '+91 22 2281 1234', email: 'headoffice@abcexports.in' },
+      { id: 'A002', label: 'Branch Office', address: '56 MG Road, Pune 411001, India', contactNumber: '+91 20 2553 5678', email: 'pune@abcexports.in' },
+      { id: 'A003', label: 'Warehouse', address: 'Plot 7, JNPT SEZ, Navi Mumbai 400707, India', contactNumber: '+91 22 2724 9012', email: 'warehouse@abcexports.in' },
     ],
   },
   {
     id: 'P002', name: 'Global Traders LLC.',
     addresses: [
-      { id: 'A004', label: 'Main Office', address: '45 Sheikh Zayed Rd, Dubai, UAE' },
-      { id: 'A005', label: 'Free Zone', address: 'Jebel Ali Free Zone, Dubai, UAE' },
+      { id: 'A004', label: 'Main Office', address: '45 Sheikh Zayed Rd, Dubai, UAE', contactNumber: '+971 4 321 4567', email: 'info@globaltraders.ae' },
+      { id: 'A005', label: 'Free Zone', address: 'Jebel Ali Free Zone, Dubai, UAE', contactNumber: '+971 4 881 2345', email: 'freezone@globaltraders.ae' },
     ],
   },
   {
     id: 'P003', name: 'Pacific Imports Inc.',
     addresses: [
-      { id: 'A006', label: 'Headquarters', address: '890 Harbor Blvd, Long Beach, CA 90802, USA' },
-      { id: 'A007', label: 'East Coast', address: '200 Port Newark Blvd, Newark, NJ 07114, USA' },
+      { id: 'A006', label: 'Headquarters', address: '890 Harbor Blvd, Long Beach, CA 90802, USA', contactNumber: '+1 562 435 7890', email: 'hq@pacificimports.com' },
+      { id: 'A007', label: 'East Coast', address: '200 Port Newark Blvd, Newark, NJ 07114, USA', contactNumber: '+1 973 522 3456', email: 'eastcoast@pacificimports.com' },
     ],
   },
   {
     id: 'P004', name: 'Euro Freight GmbH',
     addresses: [
-      { id: 'A008', label: 'Head Office', address: 'Hafenstr. 22, 20457 Hamburg, Germany' },
+      { id: 'A008', label: 'Head Office', address: 'Hafenstr. 22, 20457 Hamburg, Germany', contactNumber: '+49 40 3012 5678', email: 'info@eurofreight.de' },
     ],
   },
   {
     id: 'P005', name: 'Silk Road Trading Co.',
     addresses: [
-      { id: 'A009', label: 'Shanghai Office', address: '168 Pudong Ave, Shanghai 200120, China' },
-      { id: 'A010', label: 'Shenzhen Office', address: '88 Nanhai Blvd, Shenzhen 518000, China' },
+      { id: 'A009', label: 'Shanghai Office', address: '168 Pudong Ave, Shanghai 200120, China', contactNumber: '+86 21 5888 1234', email: 'shanghai@silkroadtrading.cn' },
+      { id: 'A010', label: 'Shenzhen Office', address: '88 Nanhai Blvd, Shenzhen 518000, China', contactNumber: '+86 755 2688 5678', email: 'shenzhen@silkroadtrading.cn' },
     ],
   },
 ];
-
 interface PartyFieldProps {
   name: keyof ShipmentFormData;
   idName: keyof ShipmentFormData;
