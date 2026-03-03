@@ -125,7 +125,7 @@ export default function LclCargoSection() {
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-card text-muted-foreground hover:bg-muted'
                         }`}
-                        onClick={() => setValue(`lclCargo.${index}.dimensionUnit`, unit)}
+                        onClick={() => { setValue(`lclCargo.${index}.dimensionUnit`, unit); setTimeout(() => recalculate(index), 0); }}
                       >
                         {unit}
                       </button>
