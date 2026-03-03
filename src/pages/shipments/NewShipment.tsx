@@ -47,8 +47,8 @@ export default function NewShipmentPage() {
       lclCargo: [{ isStackable: true, packageType: undefined, dimensionUnit: 'CM' as const, length: 0, breadth: 0, height: 0, weightPerPackage: 0, numberOfPackages: 1, commodity: '', hsCode: '', grossWeight: 0, netWeight: 0, volume: 0, marksAndNumbers: '', confirmNotDangerous: false }],
       currency: 'USD', exchangeRate: 1,
       charges: [],
-      blType: undefined, hblRequired: false, mblRequired: true, telexRelease: false, originalBLCount: 3,
-    },
+      blType: undefined, hblRequired: false, mblRequired: true, telexRelease: false, originalBLCount: 3
+    }
   });
 
   const { getValues } = methods;
@@ -69,7 +69,7 @@ export default function NewShipmentPage() {
       try {
         const parsed = JSON.parse(draft);
         methods.reset(parsed);
-      } catch { /* ignore */ }
+      } catch {/* ignore */}
     }
   }, [methods]);
 
@@ -99,8 +99,19 @@ export default function NewShipmentPage() {
               </Button>
               <div>
                 <h1 className="text-2xl font-bold text-foreground">Create New Shipment</h1>
-                <p className="text-sm text-muted-foreground font-mono">{shipmentNumber}</p>
+                
               </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button type="button" variant="outline" size="sm" onClick={handleSaveDraft}>
+                <Save className="mr-1.5 h-4 w-4" /> Save Draft
+              </Button>
+              <Button type="button" variant="ghost" size="sm" onClick={() => navigate('/shipments')}>
+                <X className="mr-1.5 h-4 w-4" /> Cancel
+              </Button>
+              <Button type="submit" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                <Ship className="mr-1.5 h-4 w-4" /> Create Shipment
+              </Button>
             </div>
           </div>
         </div>
@@ -111,14 +122,12 @@ export default function NewShipmentPage() {
             <Step1ShipmentType />
             <Step2Parties />
             <Step3Routing />
-            <Step6Review />
+            <Step4Cargo />
             <Step5Charges />
+            <Step6Review />
 
             {/* Bottom Submit */}
             <div className="flex items-center justify-end gap-3 pt-4 pb-8 border-t border-border">
-              <Button type="button" variant="ghost" onClick={() => navigate('/shipments')}>
-                <X className="mr-1.5 h-4 w-4" /> Cancel
-              </Button>
               <Button type="button" variant="outline" onClick={handleSaveDraft}>
                 <Save className="mr-1.5 h-4 w-4" /> Save Draft
               </Button>
@@ -136,6 +145,6 @@ export default function NewShipmentPage() {
           </div>
         </div>
       </form>
-    </FormProvider>
-  );
+    </FormProvider>);
+
 }
