@@ -103,7 +103,7 @@ export default function Step3Routing() {
             name="eta"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ETA <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>ETA</FormLabel>
                 <FormControl><Input type="date" {...field} value={typeof field.value === 'string' ? field.value : ''} /></FormControl>
                 <FormMessage />
               </FormItem>
