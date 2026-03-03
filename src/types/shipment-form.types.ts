@@ -88,14 +88,21 @@ export const fclCargoRefinedSchema = fclCargoItemSchema.refine(data => {
 
 // ── Step 4 (LCL) ──────────────────────────────────────────
 export const lclCargoItemSchema = z.object({
-  numberOfPackages: z.number().min(1, 'At least 1 package'),
+  isStackable: z.boolean().default(true),
   packageType: z.enum(PACKAGE_TYPES).optional(),
+  dimensionUnit: z.enum(DIMENSION_UNITS).default('CM'),
+  length: z.number().min(0).default(0),
+  breadth: z.number().min(0).default(0),
+  height: z.number().min(0).default(0),
+  weightPerPackage: z.number().min(0.01, 'Weight must be > 0'),
+  numberOfPackages: z.number().min(1, 'At least 1 package'),
+  commodity: z.string().min(1, 'Commodity is required'),
+  hsCode: z.string().optional(),
   grossWeight: z.number().min(0.01, 'Weight must be > 0'),
   netWeight: z.number().optional(),
   volume: z.number().min(0.01, 'Volume must be > 0'),
-  commodity: z.string().min(1, 'Commodity is required'),
   marksAndNumbers: z.string().optional(),
-  isStackable: z.boolean().default(true),
+  confirmNotDangerous: z.boolean().default(false),
 });
 
 export const step4Schema = z.object({
