@@ -266,7 +266,21 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
             </Select>
           </div>
           {selectedAddress && (
-            <p className="text-xs text-muted-foreground pl-1">{selectedAddress.address}</p>
+            <div className="space-y-1 pl-1">
+              <p className="text-xs text-muted-foreground">{selectedAddress.address}</p>
+              {selectedAddress.contactNumber && (
+                <div className="flex items-center gap-1.5">
+                  <Phone className="h-3 w-3 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">{selectedAddress.contactNumber}</span>
+                </div>
+              )}
+              {selectedAddress.email && (
+                <div className="flex items-center gap-1.5">
+                  <Mail className="h-3 w-3 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">{selectedAddress.email}</span>
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}
