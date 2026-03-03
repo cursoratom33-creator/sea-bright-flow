@@ -359,6 +359,10 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
               <FormLabel className="text-xs">Email</FormLabel>
               <Input placeholder="e.g. office@company.com" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} className="mt-1" />
             </div>
+            <div>
+              <FormLabel className="text-xs">GST Number</FormLabel>
+              <Input placeholder="e.g. 27AABCU9603R1ZM" value={newGstNumber} onChange={(e) => setNewGstNumber(e.target.value)} className="mt-1" />
+            </div>
           </div>
           <DialogFooter>
             <Button type="button" variant="outline" size="sm" onClick={() => setShowAddDialog(false)}>Cancel</Button>
