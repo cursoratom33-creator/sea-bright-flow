@@ -181,7 +181,7 @@ export default function LclCargoSection() {
                 <FormField control={control} name={`lclCargo.${index}.volume`} render={({ field: f }) => (
                   <FormItem>
                     <FormLabel className="text-xs text-muted-foreground uppercase tracking-wider">Volume (CBM)</FormLabel>
-                    <FormControl><Input type="number" step="0.01" className="h-9" placeholder="0.0" {...f} onChange={(e) => f.onChange(Number(e.target.value))} /></FormControl>
+                    <FormControl><Input type="number" step="0.01" className="h-9 bg-muted/50" readOnly value={f.value} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
