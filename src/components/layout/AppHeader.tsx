@@ -7,6 +7,8 @@ const getInitials = (firstName: string, lastName: string): string =>
 
 export function AppHeader() {
   const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
 
   // Demo user for display
   const displayUser = user ?? { firstName: 'John', lastName: 'Doe', email: 'john@freightflow.com', role: 'admin' as const };
