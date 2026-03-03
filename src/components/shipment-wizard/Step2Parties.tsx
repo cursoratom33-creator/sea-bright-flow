@@ -19,7 +19,9 @@ function PartyField({ name, idName, label, icon: Icon, required = false }: {
   icon: React.ComponentType<{ className?: string }>;
   required?: boolean;
 }) {
-  const { control, setValue } = useFormContext<ShipmentFormData>();
+  const { control, setValue, watch } = useFormContext<ShipmentFormData>();
+  const currentName = watch(name);
+  const matchedParty = MOCK_PARTIES.find((p) => p.name === currentName);
 
   return (
     <div className="rounded-lg border border-border p-4">
@@ -52,6 +54,9 @@ function PartyField({ name, idName, label, icon: Icon, required = false }: {
           </FormItem>
         )}
       />
+      {matchedParty && (
+        <p className="text-xs text-muted-foreground mt-2 pl-1">{matchedParty.address}</p>
+      )}
     </div>
   );
 }
