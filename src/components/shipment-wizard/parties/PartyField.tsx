@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator } from '@/components/ui/command';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Plus, MapPin, ChevronsUpDown, Check, Phone, Mail } from 'lucide-react';
+import { Plus, MapPin, ChevronsUpDown, Check, Phone, Mail, Settings2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
