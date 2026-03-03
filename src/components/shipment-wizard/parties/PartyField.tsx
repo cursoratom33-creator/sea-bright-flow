@@ -146,12 +146,13 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const handleAddAddress = () => {
     if (!newLabel.trim() || !newAddress.trim() || !activeParty) return;
     const newId = `${activeParty.id}-custom-${Date.now()}`;
-    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim() }]);
+    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim(), gstNumber: newGstNumber.trim() }]);
     setSelectedAddressId(newId);
     setNewLabel('');
     setNewAddress('');
     setNewContactNumber('');
     setNewEmail('');
+    setNewGstNumber('');
     setShowAddDialog(false);
   };
 
