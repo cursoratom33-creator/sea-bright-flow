@@ -71,7 +71,7 @@ interface PartyFieldProps {
   hideAddress?: boolean;
 }
 
-export default function PartyField({ name, idName, label, icon: Icon, required = false }: PartyFieldProps) {
+export default function PartyField({ name, idName, label, icon: Icon, required = false, hideAddress = false }: PartyFieldProps) {
   const { control, setValue, watch } = useFormContext<ShipmentFormData>();
   const currentName = watch(name);
   const matchedParty = MOCK_PARTIES.find((p) => p.name === currentName);
