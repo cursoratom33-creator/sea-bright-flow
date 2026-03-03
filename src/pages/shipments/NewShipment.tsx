@@ -102,11 +102,6 @@ export default function NewShipmentPage() {
                 <p className="text-sm text-muted-foreground font-mono">{shipmentNumber}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Button type="submit" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Ship className="mr-1.5 h-4 w-4" /> Create Shipment
-              </Button>
-            </div>
           </div>
         </div>
 
