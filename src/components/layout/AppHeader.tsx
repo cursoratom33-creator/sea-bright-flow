@@ -47,6 +47,13 @@ export function AppHeader() {
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
             {getInitials(displayUser.firstName, displayUser.lastName)}
           </div>
+          <button
+            onClick={() => { logout(); navigate('/login'); }}
+            className="rounded-lg p-2 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+            title="Logout"
+          >
+            <LogOut className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </header>
