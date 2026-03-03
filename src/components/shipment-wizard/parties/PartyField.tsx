@@ -278,6 +278,17 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                     <Plus className="h-3.5 w-3.5" />
                     Add New Address
                   </button>
+                  <button
+                    type="button"
+                    className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-xs text-muted-foreground hover:bg-accent cursor-pointer"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      console.log('Manage All addresses for', activeParty?.name);
+                    }}
+                  >
+                    <Settings2 className="h-3.5 w-3.5" />
+                    Manage All
+                  </button>
                 </div>
               </SelectContent>
             </Select>
