@@ -39,32 +39,34 @@ export default function Step6Review() {
             </FormItem>
           } />
 
-          <div className="space-y-4">
-            <FormField control={control} name="hblRequired" render={({ field }) =>
-            <FormItem className="flex items-center gap-3">
-                <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                <Label>HBL Required?</Label>
-              </FormItem>
-            } />
-            <FormField control={control} name="mblRequired" render={({ field }) =>
-            <FormItem className="flex items-center gap-3">
-                <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                <Label>MBL Required?</Label>
-              </FormItem>
-            } />
-            <FormField control={control} name="telexRelease" render={({ field }) =>
-            <FormItem className="flex items-center gap-3">
-                <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                <Label>Telex Release?</Label>
-              </FormItem>
-            } />
-            <FormField control={control} name="originalBLCount" render={({ field }) =>
-            <FormItem>
-                <FormLabel>Original BL Count</FormLabel>
-                <FormControl><Input type="number" min={0} className="w-24" {...field} onChange={(e) => field.onChange(Number(e.target.value))} /></FormControl>
-              </FormItem>
-            } />
-          </div>
+          {data.blType !== 'Own House B/L' && (
+            <div className="space-y-4">
+              <FormField control={control} name="hblRequired" render={({ field }) =>
+              <FormItem className="flex items-center gap-3">
+                  <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
+                  <Label>HBL Required?</Label>
+                </FormItem>
+              } />
+              <FormField control={control} name="mblRequired" render={({ field }) =>
+              <FormItem className="flex items-center gap-3">
+                  <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
+                  <Label>MBL Required?</Label>
+                </FormItem>
+              } />
+              <FormField control={control} name="telexRelease" render={({ field }) =>
+              <FormItem className="flex items-center gap-3">
+                  <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
+                  <Label>Telex Release?</Label>
+                </FormItem>
+              } />
+              <FormField control={control} name="originalBLCount" render={({ field }) =>
+              <FormItem>
+                  <FormLabel>Original BL Count</FormLabel>
+                  <FormControl><Input type="number" min={0} className="w-24" {...field} onChange={(e) => field.onChange(Number(e.target.value))} /></FormControl>
+                </FormItem>
+              } />
+            </div>
+          )}
         </div>
       </div>
 
