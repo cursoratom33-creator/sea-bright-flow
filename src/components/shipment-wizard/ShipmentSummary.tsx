@@ -145,28 +145,6 @@ export default function ShipmentSummary({ currentStep }: Props) {
             <SummaryRow label="B/L Type" value={data.blType} />
           </div>
         )}
-
-        {/* Financials */}
-        {charges.length > 0 && (
-          <div className="rounded-lg border border-border p-3">
-            <div className="flex items-center gap-1.5 mb-2">
-              <DollarSign className="h-3.5 w-3.5 text-primary" />
-              <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Financials</span>
-            </div>
-            <div className="space-y-1">
-              <SummaryRow label="Buy (Cost)" value={formatCurrency(totalBuy, data.currency)} />
-              <SummaryRow label="Sell (Revenue)" value={formatCurrency(totalSell, data.currency)} />
-              <div className="border-t border-border pt-1 mt-1">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-foreground">Margin</span>
-                  <span className={`font-bold ${margin >= 0 ? 'text-emerald-600' : 'text-destructive'}`}>
-                    {formatCurrency(margin, data.currency)}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
