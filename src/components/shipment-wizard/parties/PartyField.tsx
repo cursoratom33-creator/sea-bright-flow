@@ -15,6 +15,8 @@ interface PartyAddress {
   id: string;
   label: string;
   address: string;
+  contactNumber: string;
+  email: string;
 }
 
 interface MockParty {
