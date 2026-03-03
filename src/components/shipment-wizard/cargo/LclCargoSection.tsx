@@ -2,7 +2,6 @@ import { useFormContext, useFieldArray } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Plus, Trash2, Package, Ruler } from 'lucide-react';
 import { PACKAGE_TYPES, DIMENSION_UNITS, type ShipmentFormData } from '@/types/shipment-form.types';
@@ -217,18 +216,6 @@ export default function LclCargoSection() {
       >
         <Plus className="mr-1.5 h-4 w-4" /> Add Package
       </Button>
-
-      {/* Confirmation Checkbox */}
-      <FormField control={control} name={"confirmNotDangerous" as any} render={({ field: f }) => (
-        <FormItem className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
-          <FormControl>
-            <Checkbox checked={!!f.value} onCheckedChange={f.onChange} className="mt-0.5" />
-          </FormControl>
-          <FormLabel className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer">
-            I confirm that the above cargo does not fall under dangerous/hazardous cargo category, does not require temperature control, and is not perishable.
-          </FormLabel>
-        </FormItem>
-      )} />
     </div>
   );
 }
