@@ -88,6 +88,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const [newAddress, setNewAddress] = useState('');
   const [newContactNumber, setNewContactNumber] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const [newGstNumber, setNewGstNumber] = useState('');
   const [newPartyName, setNewPartyName] = useState('');
   const [newPartyAddress, setNewPartyAddress] = useState('');
   const [newPartyContact, setNewPartyContact] = useState('');
