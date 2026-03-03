@@ -137,9 +137,34 @@ export const step5Schema = z.object({
 export const step6Schema = z.object({
   blType: z.enum(BL_TYPES, { required_error: 'B/L type is required' }),
   hblRequired: z.boolean().default(false),
-  mblRequired: z.boolean().default(true),
+  mblRequired: z.boolean().default(false),
   telexRelease: z.boolean().default(false),
-  originalBLCount: z.number().min(0).default(3),
+  originalBLCount: z.number().min(0).default(0),
+  nonNegotiableBLCount: z.number().min(0).default(0),
+}).refine(data => {
+  if (data.hblRequired) {
+    return (data.originalBLCount + data.nonNegotiableBLCount) <= 3;
+  }
+  return true;
+}, {
+  message: 'Maximum total B/L copies allowed is 3.',
+  path: ['nonNegotiableBLCount'],
+}).refine(data => {
+  if (data.hblRequired) {
+    return data.originalBLCount > 0;
+  }
+  return true;
+}, {
+  message: 'Original B/L Count is required',
+  path: ['originalBLCount'],
+}).refine(data => {
+  if (data.hblRequired) {
+    return data.nonNegotiableBLCount > 0;
+  }
+  return true;
+}, {
+  message: 'Non-Negotiable B/L Count is required',
+  path: ['nonNegotiableBLCount'],
 });
 
 // ── Full Form Schema ───────────────────────────────────────
