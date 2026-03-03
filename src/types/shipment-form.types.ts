@@ -9,6 +9,7 @@ export const INCOTERMS = ['EXW', 'FOB', 'CFR', 'CIF', 'DDP', 'DAP'] as const;
 export const FREIGHT_TERMS = ['Prepaid', 'Collect'] as const;
 export const CONTAINER_TYPES_OPTIONS = ['20GP', '40GP', '40HC', '45HC'] as const;
 export const PACKAGE_TYPES = ['Cartons', 'Pallets', 'Bags', 'Drums', 'Crates', 'Bundles', 'Rolls'] as const;
+export const DIMENSION_UNITS = ['CM', 'M', 'MM', 'IN'] as const;
 export const CURRENCIES = ['USD', 'EUR', 'GBP', 'INR', 'AED', 'CNY', 'JPY'] as const;
 export const CHARGE_UNITS = ['CBM', 'Container', 'BL', 'Shipment', 'KG', 'TEU'] as const;
 export const BL_TYPES = ['Direct Master B/L', 'Own House B/L'] as const;
