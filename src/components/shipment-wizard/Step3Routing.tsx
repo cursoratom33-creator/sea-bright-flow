@@ -92,7 +92,7 @@ export default function Step3Routing() {
             name="etd"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ETD <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>ETD</FormLabel>
                 <FormControl><Input type="date" {...field} value={typeof field.value === 'string' ? field.value : ''} /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,7 +103,7 @@ export default function Step3Routing() {
             name="eta"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ETA <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>ETA</FormLabel>
                 <FormControl><Input type="date" {...field} value={typeof field.value === 'string' ? field.value : ''} /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -132,7 +132,7 @@ export default function Step3Routing() {
             name="carrier"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Carrier <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>Carrier</FormLabel>
                 <FormControl><Input placeholder="Search carrier..." {...field} value={typeof field.value === 'string' ? field.value : ''} list="carriers-list" /></FormControl>
                 <FormMessage />
               </FormItem>
