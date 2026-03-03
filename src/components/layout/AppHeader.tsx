@@ -1,4 +1,5 @@
-import { Bell, Search, User } from 'lucide-react';
+import { Bell, Search, User, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/auth.store';
 
 const getInitials = (firstName: string, lastName: string): string =>
