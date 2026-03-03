@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator } from '@/components/ui/command';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Plus, MapPin, ChevronsUpDown, Check, Phone, Mail } from 'lucide-react';
+import { Plus, MapPin, ChevronsUpDown, Check, Phone, Mail, Settings2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
@@ -219,6 +219,17 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                         >
                           <Plus className="mr-2 h-4 w-4" />
                           Add New Company{searchQuery ? `: "${searchQuery}"` : ''}
+                        </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            setOpen(false);
+                            // Navigate to manage parties or open manage dialog
+                            console.log('Manage All parties');
+                          }}
+                          className="cursor-pointer text-muted-foreground"
+                        >
+                          <Settings2 className="mr-2 h-4 w-4" />
+                          Manage All
                         </CommandItem>
                       </CommandGroup>
                     </CommandList>
