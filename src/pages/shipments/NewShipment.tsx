@@ -117,6 +117,9 @@ export default function NewShipmentPage() {
 
             {/* Bottom Submit */}
             <div className="flex items-center justify-end gap-3 pt-4 pb-8 border-t border-border">
+              <Button type="button" variant="ghost" onClick={() => navigate('/shipments')}>
+                <X className="mr-1.5 h-4 w-4" /> Cancel
+              </Button>
               <Button type="button" variant="outline" onClick={handleSaveDraft}>
                 <Save className="mr-1.5 h-4 w-4" /> Save Draft
               </Button>
