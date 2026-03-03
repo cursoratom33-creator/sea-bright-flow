@@ -82,8 +82,12 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const [showAddPartyDialog, setShowAddPartyDialog] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [newAddress, setNewAddress] = useState('');
+  const [newContactNumber, setNewContactNumber] = useState('');
+  const [newEmail, setNewEmail] = useState('');
   const [newPartyName, setNewPartyName] = useState('');
   const [newPartyAddress, setNewPartyAddress] = useState('');
+  const [newPartyContact, setNewPartyContact] = useState('');
+  const [newPartyEmail, setNewPartyEmail] = useState('');
   const [customParties, setCustomParties] = useState<MockParty[]>([]);
   const [customAddresses, setCustomAddresses] = useState<PartyAddress[]>([]);
 
