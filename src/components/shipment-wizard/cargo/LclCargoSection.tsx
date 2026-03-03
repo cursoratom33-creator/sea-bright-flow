@@ -217,6 +217,18 @@ export default function LclCargoSection() {
       >
         <Plus className="mr-1.5 h-4 w-4" /> Add Package
       </Button>
+
+      {/* Confirmation Checkbox */}
+      <FormField control={control} name="confirmNotDangerous" render={({ field: f }) => (
+        <FormItem className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
+          <FormControl>
+            <Checkbox checked={f.value} onCheckedChange={f.onChange} className="mt-0.5" />
+          </FormControl>
+          <FormLabel className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer">
+            I confirm that the above cargo does not fall under dangerous/hazardous cargo category, does not require temperature control, and is not perishable.
+          </FormLabel>
+        </FormItem>
+      )} />
     </div>
   );
 }
