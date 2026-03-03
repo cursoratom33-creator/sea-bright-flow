@@ -24,7 +24,7 @@ export default function Step2Parties() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <PartyField name="customsBrokerName" idName="customsBrokerId" label="CHA / Customs Broker" icon={Briefcase} hideAddress />
-          <PartyField name="billToName" idName="billToId" label="Bill To" icon={Receipt} showGst gstFieldName="billToGst" />
+          <PartyField name="billToName" idName="billToId" label="Bill To" icon={Receipt} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 mt-6">
