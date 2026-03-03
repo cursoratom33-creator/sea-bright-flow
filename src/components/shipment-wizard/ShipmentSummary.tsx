@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import { Ship, Anchor, MapPin, Package, Users, FileText, DollarSign, ArrowRight } from 'lucide-react';
+import { Ship, Anchor, MapPin, Package, Users, FileText, DollarSign, ArrowRight, Container } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/lib/utils';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
@@ -145,6 +146,13 @@ export default function ShipmentSummary({ currentStep }: Props) {
             <SummaryRow label="B/L Type" value={data.blType} />
           </div>
         )}
+      </div>
+
+      {/* Attach Container */}
+      <div className="p-4 border-t border-border">
+        <Button type="button" variant="outline" className="w-full border-dashed border-primary/40 text-primary hover:bg-primary/5 h-10">
+          <Container className="mr-2 h-4 w-4" /> Attach Container
+        </Button>
       </div>
     </div>
   );
