@@ -103,7 +103,10 @@ export const step4Schema = z.object({
 });
 
 // ── Step 5 ─────────────────────────────────────────────────
+export const CHARGE_TYPES = ['buy', 'sell'] as const;
+
 export const chargeLineSchema = z.object({
+  chargeType: z.enum(CHARGE_TYPES).default('buy'),
   chargeCode: z.string().min(1, 'Charge code required'),
   description: z.string().min(1, 'Description required'),
   rate: z.number().min(0, 'Rate must be >= 0'),
