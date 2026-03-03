@@ -39,7 +39,7 @@ export default function NewShipmentPage() {
       notifyPartyId: '', notifyPartyName: '',
       forwardingAgentId: '', forwardingAgentName: '',
       customsBrokerId: '', customsBrokerName: '',
-      salesPerson: '', customerRefNo: '', bookingNo: '', contractNo: '',
+      billToId: '', billToName: '', billToGst: '',
       placeOfReceipt: '', portOfLoading: '', portOfDischarge: '',
       finalDestination: '', vesselName: '', voyageNo: '',
       etd: '', eta: '', cutOffDate: '', carrier: '',

@@ -284,7 +284,24 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                 </div>
               )}
             </div>
-          )}
+      )}
+
+      {showGst && gstFieldName && activeParty && (
+        <div className="mt-3">
+          <FormField
+            control={control}
+            name={gstFieldName}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-xs text-muted-foreground">GST Number</FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. 27AABCU9603R1ZM" {...field} value={typeof field.value === 'string' ? field.value : ''} className="h-8 text-xs" />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+      )}
         </div>
       )}
 
