@@ -2,6 +2,7 @@ import { Bell, Search, User, LogOut, Bot } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/auth.store';
+import { useAIModeStore } from '@/store/aimode.store';
 
 const getInitials = (firstName: string, lastName: string): string =>
   `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
@@ -10,6 +11,7 @@ export function AppHeader() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const navigate = useNavigate();
+  const openAIMode = useAIModeStore((s) => s.open);
 
   // Demo user for display
   const displayUser = user ?? { firstName: 'John', lastName: 'Doe', email: 'john@freightflow.com', role: 'admin' as const };
@@ -32,7 +34,12 @@ export function AppHeader() {
       {/* Right side */}
       <div className="flex items-center gap-3">
         {/* AI Mode */}
-        <Button variant="outline" size="sm" className="gap-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-colors">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => openAIMode('chat')}
+          className="gap-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-colors"
+        >
           <Bot className="h-4 w-4" />
           <span className="hidden sm:inline">AI Mode</span>
         </Button>

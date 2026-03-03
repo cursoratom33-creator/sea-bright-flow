@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { AIChatPanel } from "@/components/AIChatPanel";
+import { AIModeOverlay } from "@/components/AIModeOverlay";
 
 import LoginPage from "./pages/Login";
 import DashboardPage from "./pages/Dashboard";
