@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator } from '@/components/ui/command';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Plus, MapPin, ChevronsUpDown, Check } from 'lucide-react';
+import { Plus, MapPin, ChevronsUpDown, Check, Phone, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
@@ -15,6 +15,8 @@ interface PartyAddress {
   id: string;
   label: string;
   address: string;
+  contactNumber: string;
+  email: string;
 }
 
 interface MockParty {
@@ -27,40 +29,39 @@ const MOCK_PARTIES: MockParty[] = [
   {
     id: 'P001', name: 'ABC Exports Ltd.',
     addresses: [
-      { id: 'A001', label: 'Head Office', address: '12 Marine Drive, Mumbai 400001, India' },
-      { id: 'A002', label: 'Branch Office', address: '56 MG Road, Pune 411001, India' },
-      { id: 'A003', label: 'Warehouse', address: 'Plot 7, JNPT SEZ, Navi Mumbai 400707, India' },
+      { id: 'A001', label: 'Head Office', address: '12 Marine Drive, Mumbai 400001, India', contactNumber: '+91 22 2281 1234', email: 'headoffice@abcexports.in' },
+      { id: 'A002', label: 'Branch Office', address: '56 MG Road, Pune 411001, India', contactNumber: '+91 20 2553 5678', email: 'pune@abcexports.in' },
+      { id: 'A003', label: 'Warehouse', address: 'Plot 7, JNPT SEZ, Navi Mumbai 400707, India', contactNumber: '+91 22 2724 9012', email: 'warehouse@abcexports.in' },
     ],
   },
   {
     id: 'P002', name: 'Global Traders LLC.',
     addresses: [
-      { id: 'A004', label: 'Main Office', address: '45 Sheikh Zayed Rd, Dubai, UAE' },
-      { id: 'A005', label: 'Free Zone', address: 'Jebel Ali Free Zone, Dubai, UAE' },
+      { id: 'A004', label: 'Main Office', address: '45 Sheikh Zayed Rd, Dubai, UAE', contactNumber: '+971 4 321 4567', email: 'info@globaltraders.ae' },
+      { id: 'A005', label: 'Free Zone', address: 'Jebel Ali Free Zone, Dubai, UAE', contactNumber: '+971 4 881 2345', email: 'freezone@globaltraders.ae' },
     ],
   },
   {
     id: 'P003', name: 'Pacific Imports Inc.',
     addresses: [
-      { id: 'A006', label: 'Headquarters', address: '890 Harbor Blvd, Long Beach, CA 90802, USA' },
-      { id: 'A007', label: 'East Coast', address: '200 Port Newark Blvd, Newark, NJ 07114, USA' },
+      { id: 'A006', label: 'Headquarters', address: '890 Harbor Blvd, Long Beach, CA 90802, USA', contactNumber: '+1 562 435 7890', email: 'hq@pacificimports.com' },
+      { id: 'A007', label: 'East Coast', address: '200 Port Newark Blvd, Newark, NJ 07114, USA', contactNumber: '+1 973 522 3456', email: 'eastcoast@pacificimports.com' },
     ],
   },
   {
     id: 'P004', name: 'Euro Freight GmbH',
     addresses: [
-      { id: 'A008', label: 'Head Office', address: 'Hafenstr. 22, 20457 Hamburg, Germany' },
+      { id: 'A008', label: 'Head Office', address: 'Hafenstr. 22, 20457 Hamburg, Germany', contactNumber: '+49 40 3012 5678', email: 'info@eurofreight.de' },
     ],
   },
   {
     id: 'P005', name: 'Silk Road Trading Co.',
     addresses: [
-      { id: 'A009', label: 'Shanghai Office', address: '168 Pudong Ave, Shanghai 200120, China' },
-      { id: 'A010', label: 'Shenzhen Office', address: '88 Nanhai Blvd, Shenzhen 518000, China' },
+      { id: 'A009', label: 'Shanghai Office', address: '168 Pudong Ave, Shanghai 200120, China', contactNumber: '+86 21 5888 1234', email: 'shanghai@silkroadtrading.cn' },
+      { id: 'A010', label: 'Shenzhen Office', address: '88 Nanhai Blvd, Shenzhen 518000, China', contactNumber: '+86 755 2688 5678', email: 'shenzhen@silkroadtrading.cn' },
     ],
   },
 ];
-
 interface PartyFieldProps {
   name: keyof ShipmentFormData;
   idName: keyof ShipmentFormData;
@@ -81,8 +82,12 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
   const [showAddPartyDialog, setShowAddPartyDialog] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [newAddress, setNewAddress] = useState('');
+  const [newContactNumber, setNewContactNumber] = useState('');
+  const [newEmail, setNewEmail] = useState('');
   const [newPartyName, setNewPartyName] = useState('');
   const [newPartyAddress, setNewPartyAddress] = useState('');
+  const [newPartyContact, setNewPartyContact] = useState('');
+  const [newPartyEmail, setNewPartyEmail] = useState('');
   const [customParties, setCustomParties] = useState<MockParty[]>([]);
   const [customAddresses, setCustomAddresses] = useState<PartyAddress[]>([]);
 
@@ -119,7 +124,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
       id: newId,
       name: newPartyName.trim(),
       addresses: newPartyAddress.trim()
-        ? [{ id: `${newId}-A001`, label: 'Main Office', address: newPartyAddress.trim() }]
+        ? [{ id: `${newId}-A001`, label: 'Main Office', address: newPartyAddress.trim(), contactNumber: newPartyContact.trim(), email: newPartyEmail.trim() }]
         : [],
     };
     setCustomParties(prev => [...prev, newParty]);
@@ -128,16 +133,20 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
     setSelectedAddressId(newParty.addresses[0]?.id || '');
     setNewPartyName('');
     setNewPartyAddress('');
+    setNewPartyContact('');
+    setNewPartyEmail('');
     setShowAddPartyDialog(false);
   };
 
   const handleAddAddress = () => {
     if (!newLabel.trim() || !newAddress.trim() || !activeParty) return;
     const newId = `${activeParty.id}-custom-${Date.now()}`;
-    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim() }]);
+    setCustomAddresses(prev => [...prev, { id: newId, label: newLabel.trim(), address: newAddress.trim(), contactNumber: newContactNumber.trim(), email: newEmail.trim() }]);
     setSelectedAddressId(newId);
     setNewLabel('');
     setNewAddress('');
+    setNewContactNumber('');
+    setNewEmail('');
     setShowAddDialog(false);
   };
 
@@ -257,7 +266,21 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
             </Select>
           </div>
           {selectedAddress && (
-            <p className="text-xs text-muted-foreground pl-1">{selectedAddress.address}</p>
+            <div className="space-y-1 pl-1">
+              <p className="text-xs text-muted-foreground">{selectedAddress.address}</p>
+              {selectedAddress.contactNumber && (
+                <div className="flex items-center gap-1.5">
+                  <Phone className="h-3 w-3 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">{selectedAddress.contactNumber}</span>
+                </div>
+              )}
+              {selectedAddress.email && (
+                <div className="flex items-center gap-1.5">
+                  <Mail className="h-3 w-3 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">{selectedAddress.email}</span>
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -276,6 +299,14 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
             <div>
               <FormLabel className="text-xs">Full Address</FormLabel>
               <Input placeholder="Street, City, ZIP, Country" value={newAddress} onChange={(e) => setNewAddress(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">Contact Number</FormLabel>
+              <Input placeholder="e.g. +91 22 1234 5678" value={newContactNumber} onChange={(e) => setNewContactNumber(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">Email</FormLabel>
+              <Input placeholder="e.g. office@company.com" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} className="mt-1" />
             </div>
           </div>
           <DialogFooter>
@@ -299,6 +330,14 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
             <div>
               <FormLabel className="text-xs">Address (optional)</FormLabel>
               <Input placeholder="Street, City, ZIP, Country" value={newPartyAddress} onChange={(e) => setNewPartyAddress(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">Contact Number (optional)</FormLabel>
+              <Input placeholder="e.g. +1 555 123 4567" value={newPartyContact} onChange={(e) => setNewPartyContact(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">Email (optional)</FormLabel>
+              <Input placeholder="e.g. info@company.com" value={newPartyEmail} onChange={(e) => setNewPartyEmail(e.target.value)} className="mt-1" />
             </div>
           </div>
           <DialogFooter>
