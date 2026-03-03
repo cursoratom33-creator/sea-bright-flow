@@ -69,6 +69,8 @@ interface PartyFieldProps {
   icon: React.ComponentType<{ className?: string }>;
   required?: boolean;
   hideAddress?: boolean;
+  showGst?: boolean;
+  gstFieldName?: keyof ShipmentFormData;
 }
 
 export default function PartyField({ name, idName, label, icon: Icon, required = false, hideAddress = false }: PartyFieldProps) {

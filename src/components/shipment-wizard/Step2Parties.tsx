@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Users, Building2, UserCheck, Briefcase } from 'lucide-react';
+import { Users, Building2, UserCheck, Briefcase, Receipt } from 'lucide-react';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 import PartyField from './parties/PartyField';
 
