@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FileText, CheckCircle2 } from 'lucide-react';
 import { BL_TYPES, type ShipmentFormData } from '@/types/shipment-form.types';
-import { useEffect } from 'react';
+
 
 export default function Step6Review() {
   const { control, watch, setValue } = useFormContext<ShipmentFormData>();
