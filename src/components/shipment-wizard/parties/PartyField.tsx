@@ -315,6 +315,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                 </div>
               )}
             </div>
+          )}
 
       {showGst && gstFieldName && activeParty && (
         <div className="mt-3">
