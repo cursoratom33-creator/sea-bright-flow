@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Users, Building2, UserCheck, Briefcase } from 'lucide-react';
+import { Users, Building2, UserCheck, Briefcase, Receipt } from 'lucide-react';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 import PartyField from './parties/PartyField';
 
@@ -24,6 +24,7 @@ export default function Step2Parties() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <PartyField name="customsBrokerName" idName="customsBrokerId" label="CHA / Customs Broker" icon={Briefcase} hideAddress />
+          <PartyField name="billToName" idName="billToId" label="Bill To" icon={Receipt} showGst gstFieldName="billToGst" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 mt-6">
