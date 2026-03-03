@@ -163,16 +163,6 @@ function PartyField({ name, idName, label, icon: Icon, required = false }: {
                 </div>
               </SelectContent>
             </Select>
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              className="h-8 w-8 shrink-0"
-              onClick={() => setShowAddDialog(true)}
-              title="Add new address"
-            >
-              <Plus className="h-3.5 w-3.5" />
-            </Button>
           </div>
           {selectedAddress && (
             <p className="text-xs text-muted-foreground pl-1">{selectedAddress.address}</p>
