@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Ship, Plus, Filter, Download } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
