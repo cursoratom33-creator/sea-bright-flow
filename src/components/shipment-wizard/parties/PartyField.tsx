@@ -300,6 +300,14 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
               <FormLabel className="text-xs">Full Address</FormLabel>
               <Input placeholder="Street, City, ZIP, Country" value={newAddress} onChange={(e) => setNewAddress(e.target.value)} className="mt-1" />
             </div>
+            <div>
+              <FormLabel className="text-xs">Contact Number</FormLabel>
+              <Input placeholder="e.g. +91 22 1234 5678" value={newContactNumber} onChange={(e) => setNewContactNumber(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <FormLabel className="text-xs">Email</FormLabel>
+              <Input placeholder="e.g. office@company.com" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} className="mt-1" />
+            </div>
           </div>
           <DialogFooter>
             <Button type="button" variant="outline" size="sm" onClick={() => setShowAddDialog(false)}>Cancel</Button>
