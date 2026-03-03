@@ -10,6 +10,7 @@ import { AIChatPanel } from "@/components/AIChatPanel";
 import LoginPage from "./pages/Login";
 import DashboardPage from "./pages/Dashboard";
 import ShipmentsPage from "./pages/Shipments";
+import NewShipmentPage from "./pages/shipments/NewShipment";
 import ConsolPage from "./pages/Consol";
 import DocumentsPage from "./pages/Documents";
 import BillingPage from "./pages/Billing";
