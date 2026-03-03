@@ -48,7 +48,7 @@ export default function NewShipmentPage() {
       lclCargo: [{ isStackable: true, packageType: undefined, dimensionUnit: 'CM' as const, length: 0, breadth: 0, height: 0, weightPerPackage: 0, numberOfPackages: 1, commodity: '', hsCode: '', grossWeight: 0, netWeight: 0, volume: 0, marksAndNumbers: '', confirmNotDangerous: false }],
       currency: 'USD', exchangeRate: 1,
       charges: [],
-      blType: undefined, hblRequired: false, mblRequired: true, telexRelease: false, originalBLCount: 3
+      blType: undefined, hblRequired: false, mblRequired: false, telexRelease: false, originalBLCount: 0, nonNegotiableBLCount: 0
     }
   });
 
