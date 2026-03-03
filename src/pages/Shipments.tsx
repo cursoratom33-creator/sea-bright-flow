@@ -28,7 +28,7 @@ export default function ShipmentsPage() {
           <Button variant="outline" size="sm">
             <Download className="mr-1.5 h-4 w-4" /> Export
           </Button>
-          <Button size="sm">
+          <Button size="sm" onClick={() => navigate('/shipments/new')}>
             <Plus className="mr-1.5 h-4 w-4" /> New Shipment
           </Button>
         </div>
