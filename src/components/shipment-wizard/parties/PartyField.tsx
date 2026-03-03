@@ -68,9 +68,10 @@ interface PartyFieldProps {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   required?: boolean;
+  hideAddress?: boolean;
 }
 
-export default function PartyField({ name, idName, label, icon: Icon, required = false }: PartyFieldProps) {
+export default function PartyField({ name, idName, label, icon: Icon, required = false, hideAddress = false }: PartyFieldProps) {
   const { control, setValue, watch } = useFormContext<ShipmentFormData>();
   const currentName = watch(name);
   const matchedParty = MOCK_PARTIES.find((p) => p.name === currentName);
@@ -228,7 +229,7 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
         )}
       />
 
-      {activeParty && allAddresses.length > 0 && (
+      {!hideAddress && activeParty && allAddresses.length > 0 && (
         <div className="mt-3 space-y-2">
           <div className="flex items-center gap-2">
             <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
