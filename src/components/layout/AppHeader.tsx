@@ -1,4 +1,5 @@
-import { Bell, Search, User } from 'lucide-react';
+import { Bell, Search, User, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/auth.store';
 
 const getInitials = (firstName: string, lastName: string): string =>
@@ -6,6 +7,8 @@ const getInitials = (firstName: string, lastName: string): string =>
 
 export function AppHeader() {
   const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
 
   // Demo user for display
   const displayUser = user ?? { firstName: 'John', lastName: 'Doe', email: 'john@freightflow.com', role: 'admin' as const };
@@ -44,6 +47,13 @@ export function AppHeader() {
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
             {getInitials(displayUser.firstName, displayUser.lastName)}
           </div>
+          <button
+            onClick={() => { logout(); navigate('/login'); }}
+            className="rounded-lg p-2 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+            title="Logout"
+          >
+            <LogOut className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </header>
