@@ -68,6 +68,7 @@ interface PartyFieldProps {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   required?: boolean;
+  hideAddress?: boolean;
 }
 
 export default function PartyField({ name, idName, label, icon: Icon, required = false }: PartyFieldProps) {
