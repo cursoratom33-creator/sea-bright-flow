@@ -140,6 +140,7 @@ export default function Step6Review() {
                         <FormMessage />
                       </FormItem>
                     } />
+                  </div>
                 </div>
               )}
             </div>
