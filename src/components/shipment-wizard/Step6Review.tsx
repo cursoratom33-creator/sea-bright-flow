@@ -15,34 +15,25 @@ export default function Step6Review() {
   const mblRequired = watch('mblRequired');
   const originalBLCount = watch('originalBLCount') || 0;
   const nonNegotiableBLCount = watch('nonNegotiableBLCount') || 0;
-  const totalCopies = originalBLCount + nonNegotiableBLCount;
 
-  // Reset values when MBL is selected
-  useEffect(() => {
-    if (mblRequired) {
+  const isDirectMasterBL = blType === 'Direct Master B/L';
+
+  // Derive a single selection value for the radio group
+  const blRequirement = hblRequired ? 'hbl' : mblRequired ? 'mbl' : '';
+
+  const handleBLRequirementChange = (value: string) => {
+    if (value === 'hbl') {
+      setValue('hblRequired', true);
+      setValue('mblRequired', false);
+      setValue('telexRelease', false);
+    } else if (value === 'mbl') {
+      setValue('mblRequired', true);
       setValue('hblRequired', false);
       setValue('originalBLCount', 0);
       setValue('nonNegotiableBLCount', 0);
-    }
-  }, [mblRequired, setValue]);
-
-  // Reset values when HBL is deselected
-  useEffect(() => {
-    if (!hblRequired) {
-      setValue('originalBLCount', 0);
-      setValue('nonNegotiableBLCount', 0);
-    }
-  }, [hblRequired, setValue]);
-
-  // Reset when HBL is selected
-  useEffect(() => {
-    if (hblRequired) {
-      setValue('mblRequired', false);
       setValue('telexRelease', false);
     }
-  }, [hblRequired, setValue]);
-
-  const isDirectMasterBL = blType === 'Direct Master B/L';
+  };
 
   return (
     <div className="space-y-6">
@@ -70,23 +61,22 @@ export default function Step6Review() {
             </FormItem>
           } />
 
-          {/* Direct Master B/L: Show HBL / MBL toggles */}
+          {/* Direct Master B/L: Choose HBL or MBL */}
           {isDirectMasterBL && (
             <div className="space-y-4 border-t border-border pt-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField control={control} name="hblRequired" render={({ field }) =>
-                  <FormItem className="flex items-center gap-3">
-                    <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                    <Label>HBL Required</Label>
-                  </FormItem>
-                } />
-                <FormField control={control} name="mblRequired" render={({ field }) =>
-                  <FormItem className="flex items-center gap-3">
-                    <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                    <Label>MBL Required</Label>
-                  </FormItem>
-                } />
-              </div>
+              <FormItem>
+                <FormLabel>B/L Requirement <span className="text-destructive">*</span></FormLabel>
+                <RadioGroup onValueChange={handleBLRequirementChange} value={blRequirement} className="space-y-2 mt-2">
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="hbl" id="bl-req-hbl" />
+                    <Label htmlFor="bl-req-hbl" className="cursor-pointer text-sm">HBL Required</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="mbl" id="bl-req-mbl" />
+                    <Label htmlFor="bl-req-mbl" className="cursor-pointer text-sm">MBL Required</Label>
+                  </div>
+                </RadioGroup>
+              </FormItem>
 
               {/* MBL Selected → Sea Way Bill */}
               {mblRequired && (
