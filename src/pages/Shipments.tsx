@@ -13,6 +13,7 @@ const mockShipments = [
 ];
 
 export default function ShipmentsPage() {
+  const navigate = useNavigate();
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex items-center justify-between">
