@@ -10,6 +10,23 @@ export default function LclCargoSection() {
   const { control, watch, setValue } = useFormContext<ShipmentFormData>();
   const { fields, append, remove } = useFieldArray({ control, name: 'lclCargo' });
 
+  const recalculate = (index: number) => {
+    const l = watch(`lclCargo.${index}.length`) || 0;
+    const b = watch(`lclCargo.${index}.breadth`) || 0;
+    const h = watch(`lclCargo.${index}.height`) || 0;
+    const unit = watch(`lclCargo.${index}.dimensionUnit`) || 'CM';
+    const wpp = watch(`lclCargo.${index}.weightPerPackage`) || 0;
+    const pkgs = watch(`lclCargo.${index}.numberOfPackages`) || 0;
+
+    // Convert to meters then calc CBM
+    const factor = unit === 'M' ? 1 : unit === 'CM' ? 0.01 : unit === 'MM' ? 0.001 : 0.0254;
+    const cbm = parseFloat(((l * factor) * (b * factor) * (h * factor) * pkgs).toFixed(4));
+    const gw = parseFloat((wpp * pkgs).toFixed(2));
+
+    setValue(`lclCargo.${index}.volume`, cbm);
+    setValue(`lclCargo.${index}.grossWeight`, gw);
+  };
+
   return (
     <div className="space-y-4">
       {fields.map((field, index) => {
