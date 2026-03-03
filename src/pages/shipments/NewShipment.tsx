@@ -103,12 +103,6 @@ export default function NewShipmentPage() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button type="button" variant="outline" size="sm" onClick={handleSaveDraft}>
-                <Save className="mr-1.5 h-4 w-4" /> Save Draft
-              </Button>
-              <Button type="button" variant="ghost" size="sm" onClick={() => navigate('/shipments')}>
-                <X className="mr-1.5 h-4 w-4" /> Cancel
-              </Button>
               <Button type="submit" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Ship className="mr-1.5 h-4 w-4" /> Create Shipment
               </Button>
