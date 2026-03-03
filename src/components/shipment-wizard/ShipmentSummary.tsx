@@ -11,8 +11,8 @@ export default function ShipmentSummary({ currentStep }: Props) {
   const { watch } = useFormContext<ShipmentFormData>();
   const data = watch();
   const charges = data.charges || [];
-  const totalBuy = charges.filter(c => c.chargeType === 'Buy').reduce((s, c) => s + (c.amount || 0), 0);
-  const totalSell = charges.filter(c => c.chargeType === 'Sell').reduce((s, c) => s + (c.amount || 0), 0);
+  const totalBuy = charges.filter(c => c.chargeType === 'buy').reduce((s, c) => s + (c.amount || 0), 0);
+  const totalSell = charges.filter(c => c.chargeType === 'sell').reduce((s, c) => s + (c.amount || 0), 0);
   const margin = totalSell - totalBuy;
 
   const containerCount = data.shipmentType === 'FCL'
