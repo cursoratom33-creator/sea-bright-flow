@@ -220,6 +220,17 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                           <Plus className="mr-2 h-4 w-4" />
                           Add New Company{searchQuery ? `: "${searchQuery}"` : ''}
                         </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            setOpen(false);
+                            // Navigate to manage parties or open manage dialog
+                            console.log('Manage All parties');
+                          }}
+                          className="cursor-pointer text-muted-foreground"
+                        >
+                          <Settings2 className="mr-2 h-4 w-4" />
+                          Manage All
+                        </CommandItem>
                       </CommandGroup>
                     </CommandList>
                   </Command>
