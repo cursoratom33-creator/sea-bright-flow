@@ -148,6 +148,19 @@ function PartyField({ name, idName, label, icon: Icon, required = false }: {
                     <span className="text-muted-foreground ml-1">— {addr.address}</span>
                   </SelectItem>
                 ))}
+                <div className="border-t border-border mt-1 pt-1 px-1">
+                  <button
+                    type="button"
+                    className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-xs text-primary hover:bg-accent cursor-pointer"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      setShowAddDialog(true);
+                    }}
+                  >
+                    <Plus className="h-3.5 w-3.5" />
+                    Add New Address
+                  </button>
+                </div>
               </SelectContent>
             </Select>
             <Button
