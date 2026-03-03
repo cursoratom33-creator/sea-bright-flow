@@ -307,9 +307,14 @@ export default function PartyField({ name, idName, label, icon: Icon, required =
                   <Mail className="h-3 w-3 text-muted-foreground" />
                   <span className="text-xs text-muted-foreground">{selectedAddress.email}</span>
                 </div>
+               )}
+              {selectedAddress.gstNumber && (
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-medium text-muted-foreground">GST:</span>
+                  <span className="text-xs text-muted-foreground">{selectedAddress.gstNumber}</span>
+                </div>
               )}
             </div>
-      )}
 
       {showGst && gstFieldName && activeParty && (
         <div className="mt-3">
