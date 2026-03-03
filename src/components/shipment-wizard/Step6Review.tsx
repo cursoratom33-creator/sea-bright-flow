@@ -18,7 +18,7 @@ export default function Step6Review() {
     <div className="space-y-6">
       {/* Document Options */}
       <div className="rounded-xl border border-border bg-card p-6">
-        <h2 className="text-lg font-semibold text-foreground mb-1">6. Documents & Review</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">5. Documents & Review</h2>
         <p className="text-sm text-muted-foreground mb-6">Set document preferences and review your shipment</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

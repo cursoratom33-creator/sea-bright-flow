@@ -49,7 +49,7 @@ export default function Step5Charges() {
   return (
     <div className="space-y-6">
       <div className="rounded-xl border border-border bg-card p-6">
-        <h2 className="text-lg font-semibold text-foreground mb-1">5. Commercial Details</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">6. Commercial Details</h2>
         <p className="text-sm text-muted-foreground mb-6">Manage buy costs, sell revenue, and profit margins</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
