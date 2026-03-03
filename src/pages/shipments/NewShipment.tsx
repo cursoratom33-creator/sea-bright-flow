@@ -44,7 +44,7 @@ export default function NewShipmentPage() {
       finalDestination: '', vesselName: '', voyageNo: '',
       etd: '', eta: '', cutOffDate: '', carrier: '',
       fclCargo: [{ containerType: '20GP', numberOfContainers: 1, grossWeight: 0, cbm: 0, commodity: '', hsCode: '', isDangerous: false, unNumber: '', imoClass: '' }],
-      lclCargo: [{ numberOfPackages: 1, packageType: undefined, grossWeight: 0, netWeight: 0, volume: 0, commodity: '', marksAndNumbers: '', isStackable: true }],
+      lclCargo: [{ isStackable: true, packageType: undefined, dimensionUnit: 'CM' as const, length: 0, breadth: 0, height: 0, weightPerPackage: 0, numberOfPackages: 1, commodity: '', hsCode: '', grossWeight: 0, netWeight: 0, volume: 0, marksAndNumbers: '', confirmNotDangerous: false }],
       currency: 'USD', exchangeRate: 1,
       charges: [],
       blType: undefined, hblRequired: false, mblRequired: true, telexRelease: false, originalBLCount: 3,
