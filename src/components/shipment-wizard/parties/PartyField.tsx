@@ -62,6 +62,13 @@ const MOCK_PARTIES: MockParty[] = [
       { id: 'A010', label: 'Shenzhen Office', address: '88 Nanhai Blvd, Shenzhen 518000, China', contactNumber: '+86 755 2688 5678', email: 'shenzhen@silkroadtrading.cn' },
     ],
   },
+  {
+    id: 'P006', name: 'Reliance Industries Ltd.',
+    addresses: [
+      { id: 'A011', label: 'Corporate HQ', address: 'Maker Chambers IV, Nariman Point, Mumbai 400021, India', contactNumber: '+91 22 3555 5000', email: 'corporate@ril.com', gstNumber: '27AAACR5055K1Z5' },
+      { id: 'A012', label: 'Jamnagar Refinery', address: 'Motikhavdi, Jamnagar 361140, Gujarat, India', contactNumber: '+91 288 266 2000', email: 'jamnagar@ril.com', gstNumber: '24AAACR5055K1ZH' },
+    ],
+  },
 ];
 interface PartyFieldProps {
   name: keyof ShipmentFormData;
