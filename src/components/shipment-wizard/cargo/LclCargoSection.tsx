@@ -216,6 +216,25 @@ export default function LclCargoSection() {
       >
         <Plus className="mr-1.5 h-4 w-4" /> Add Package
       </Button>
+
+      {/* Totals Summary */}
+      {fields.length > 0 && (
+        <div className="flex items-center gap-6 rounded-lg border border-border bg-muted/30 px-5 py-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Total CBM:</span>
+            <span className="text-sm font-semibold text-foreground">
+              {fields.reduce((sum, _, i) => sum + (watch(`lclCargo.${i}.volume`) || 0), 0).toFixed(4)}
+            </span>
+          </div>
+          <div className="h-4 w-px bg-border" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Total Gross Wt:</span>
+            <span className="text-sm font-semibold text-foreground">
+              {fields.reduce((sum, _, i) => sum + (watch(`lclCargo.${i}.grossWeight`) || 0), 0).toFixed(2)} KG
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
