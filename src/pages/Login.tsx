@@ -141,11 +141,11 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="flex-1 h-px bg-border" />
-                <span className="text-xs text-muted-foreground">OR</span>
-                <div className="flex-1 h-px bg-border" />
-              </div>
+              
+
+
+
+              
 
               <Button type="submit" className="w-full h-11 text-sm font-semibold" disabled={isLoading}>
                 {isLoading ? 'Signing in...' : 'Sign In'}
