@@ -111,9 +111,8 @@ export default function NewShipmentPage() {
             <Step1ShipmentType />
             <Step2Parties />
             <Step3Routing />
-            <Step4Cargo />
-            <Step5Charges />
             <Step6Review />
+            <Step5Charges />
 
             {/* Bottom Submit */}
             <div className="flex items-center justify-end gap-3 pt-4 pb-8 border-t border-border">
