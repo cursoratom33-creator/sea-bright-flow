@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import { Ship, Anchor, MapPin, Package, Users, FileText, DollarSign, ArrowRight } from 'lucide-react';
+import { Ship, Anchor, MapPin, Package, Users, FileText, DollarSign, ArrowRight, Container } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/lib/utils';
 import type { ShipmentFormData } from '@/types/shipment-form.types';
 
