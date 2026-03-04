@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { Package, Plus } from 'lucide-react';
+import { Package, Plus, TrendingDown, TrendingUp, DollarSign } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
+import { Button } from '@/components/ui/button';
+import { formatCurrency } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const mockConsols = [
