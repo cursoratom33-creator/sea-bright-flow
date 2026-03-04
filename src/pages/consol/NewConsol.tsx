@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowLeft, Save, X, Ship, ChevronRight, Check } from 'lucide-react';
+import { ArrowLeft, Save, X, Ship } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { consolFormSchema, type ConsolFormData, CONSOL_WIZARD_STEPS, CONTAINER_CAPACITY } from '@/types/consol-form.types';
+import { consolFormSchema, type ConsolFormData, CONTAINER_CAPACITY } from '@/types/consol-form.types';
 import ConsolStep1Info from '@/components/consol-wizard/ConsolStep1Info';
 import ConsolStep2Routing from '@/components/consol-wizard/ConsolStep2Routing';
 import ConsolStep3Container from '@/components/consol-wizard/ConsolStep3Container';
@@ -23,7 +23,6 @@ function generateConsolNumber() {
 export default function NewConsolPage() {
   const navigate = useNavigate();
   const [consolNumber] = useState(generateConsolNumber);
-  const [currentStep, setCurrentStep] = useState(1);
 
   const methods = useForm<ConsolFormData>({
     resolver: zodResolver(consolFormSchema),
@@ -63,7 +62,6 @@ export default function NewConsolPage() {
 
   const { getValues } = methods;
 
-  // Auto-save draft every 30s
   useEffect(() => {
     const interval = setInterval(() => {
       const data = getValues();
@@ -72,7 +70,6 @@ export default function NewConsolPage() {
     return () => clearInterval(interval);
   }, [getValues]);
 
-  // Load draft on mount
   useEffect(() => {
     const draft = localStorage.getItem('consol_draft');
     if (draft) {
@@ -104,21 +101,6 @@ export default function NewConsolPage() {
     navigate('/consol');
   };
 
-  const goNext = () => setCurrentStep(s => Math.min(6, s + 1));
-  const goPrev = () => setCurrentStep(s => Math.max(1, s - 1));
-
-  const renderStep = () => {
-    switch (currentStep) {
-      case 1: return <ConsolStep1Info />;
-      case 2: return <ConsolStep2Routing />;
-      case 3: return <ConsolStep3Container />;
-      case 4: return <ConsolStep4Shipments />;
-      case 5: return <ConsolStep5Charges />;
-      case 6: return <ConsolStep6Review />;
-      default: return null;
-    }
-  };
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="animate-fade-in-up">
@@ -148,62 +130,20 @@ export default function NewConsolPage() {
           </div>
         </div>
 
-        {/* Progress Steps */}
-        <div className="mb-6">
-          <div className="flex items-center gap-1">
-            {CONSOL_WIZARD_STEPS.map((step, i) => (
-              <div key={step.id} className="flex items-center">
-                <button
-                  type="button"
-                  onClick={() => setCurrentStep(step.id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-xs ${
-                    currentStep === step.id
-                      ? 'bg-primary text-primary-foreground font-semibold'
-                      : currentStep > step.id
-                      ? 'bg-accent/10 text-accent font-medium'
-                      : 'bg-muted text-muted-foreground'
-                  }`}
-                >
-                  <span className={`h-5 w-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                    currentStep > step.id ? 'bg-accent text-accent-foreground' : 'bg-background/20'
-                  }`}>
-                    {currentStep > step.id ? <Check className="h-3 w-3" /> : step.id}
-                  </span>
-                  <span className="hidden md:inline">{step.title}</span>
-                </button>
-                {i < CONSOL_WIZARD_STEPS.length - 1 && (
-                  <ChevronRight className="h-3.5 w-3.5 text-muted-foreground mx-0.5 flex-shrink-0" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Content */}
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           <div className="xl:col-span-3 space-y-6">
-            {renderStep()}
-
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between pt-2">
-              <Button type="button" variant="outline" size="sm" onClick={goPrev} disabled={currentStep === 1}>
-                <ArrowLeft className="mr-1.5 h-4 w-4" /> Previous
-              </Button>
-              {currentStep < 6 ? (
-                <Button type="button" size="sm" onClick={goNext}>
-                  Next <ChevronRight className="ml-1.5 h-4 w-4" />
-                </Button>
-              ) : (
-                <Button type="submit" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Ship className="mr-1.5 h-4 w-4" /> Create Consol
-                </Button>
-              )}
-            </div>
+            <ConsolStep1Info />
+            <ConsolStep2Routing />
+            <ConsolStep3Container />
+            <ConsolStep4Shipments />
+            <ConsolStep5Charges />
+            <ConsolStep6Review />
           </div>
 
           {/* Sticky Summary */}
           <div className="hidden xl:block">
-            <div className="sticky top-44">
+            <div className="sticky top-24">
               <ConsolSummary />
             </div>
           </div>
