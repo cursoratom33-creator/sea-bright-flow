@@ -30,6 +30,7 @@ export const consolShipmentSchema = z.object({
 
 // ── Consol Charge ─────────────────────────────────────────
 export const consolChargeSchema = z.object({
+  chargeType: z.enum(['buy', 'sell']).default('buy'),
   chargeCode: z.string().min(1, 'Charge code required'),
   description: z.string().min(1, 'Description required'),
   rate: z.number().min(0, 'Rate must be >= 0'),
