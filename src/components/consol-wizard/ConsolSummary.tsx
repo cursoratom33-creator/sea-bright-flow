@@ -144,12 +144,6 @@ export default function ConsolSummary() {
         )}
       </div>
 
-      {/* Attach HBL */}
-      <div className="p-4 border-t border-border">
-        <Button type="button" variant="outline" className="w-full border-dashed border-primary/40 text-primary hover:bg-primary/5 h-10">
-          <Package className="mr-2 h-4 w-4" /> Attach HBL
-        </Button>
-      </div>
     </div>
   );
 }
