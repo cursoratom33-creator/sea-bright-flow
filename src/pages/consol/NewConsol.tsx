@@ -90,8 +90,7 @@ export default function NewConsolPage() {
   };
 
   const onSubmit = (data: ConsolFormData) => {
-    // Check capacity
-    const { CONTAINER_CAPACITY } = require('@/types/consol-form.types');
+    const { CONTAINER_CAPACITY } = await import('@/types/consol-form.types') as any;
     const cap = data.containerType ? CONTAINER_CAPACITY[data.containerType] : null;
     const totalCbm = (data.shipments || []).reduce((s, sh) => s + sh.cbm, 0);
     const totalWeight = (data.shipments || []).reduce((s, sh) => s + sh.grossWeight, 0);
