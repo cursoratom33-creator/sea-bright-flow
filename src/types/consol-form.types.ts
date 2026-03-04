@@ -56,7 +56,7 @@ export const consolStep1Schema = z.object({
 export const consolStep2Schema = z.object({
   portOfLoading: z.string().min(1, 'Port of Loading is required'),
   portOfDischarge: z.string().min(1, 'Port of Discharge is required'),
-  transshipmentPort: z.string().optional(),
+  transshipmentPorts: z.array(z.string()).default([]),
   finalDestination: z.string().optional(),
   placeOfReceipt: z.string().optional(),
   vesselName: z.string().optional(),
