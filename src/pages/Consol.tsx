@@ -49,6 +49,20 @@ export default function ConsolPage() {
                 <span className="text-muted-foreground">ETD</span>
                 <span className="text-foreground">{c.etd}</span>
               </div>
+              <div className="border-t border-border pt-2 mt-2 space-y-1.5">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><TrendingDown className="h-3 w-3 text-destructive" />Buy</span>
+                  <span className="text-foreground font-medium">{formatCurrency(c.totalBuy)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><TrendingUp className="h-3 w-3 text-accent" />Sell</span>
+                  <span className="text-foreground font-medium">{formatCurrency(c.totalSell)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><DollarSign className="h-3 w-3 text-primary" />Profit</span>
+                  <span className={`font-semibold ${c.profit >= 0 ? 'text-accent' : 'text-destructive'}`}>{formatCurrency(c.profit)}</span>
+                </div>
+              </div>
             </div>
           </div>
         ))}
