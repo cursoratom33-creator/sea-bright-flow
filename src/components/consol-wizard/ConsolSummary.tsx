@@ -130,18 +130,43 @@ export default function ConsolSummary() {
         )}
 
         {/* Charges */}
-        {totalCharges > 0 && (
-          <div>
-            <div className="flex items-center gap-1.5 mb-2">
-              <DollarSign className="h-3.5 w-3.5 text-primary" />
-              <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Charges</span>
+        {totalCharges > 0 && (() => {
+          const totalBuy = charges.filter(c => c.chargeType === 'buy').reduce((s, c) => s + (c.amount || 0), 0);
+          const totalSell = charges.filter(c => c.chargeType === 'sell').reduce((s, c) => s + (c.amount || 0), 0);
+          const profit = totalSell - totalBuy;
+          const margin = totalSell > 0 ? (profit / totalSell) * 100 : 0;
+          return (
+            <div>
+              <div className="flex items-center gap-1.5 mb-2">
+                <DollarSign className="h-3.5 w-3.5 text-primary" />
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Commercial</span>
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-xs">
+                  <span className="text-muted-foreground">Total Buy</span>
+                  <span className="font-semibold text-foreground">${totalBuy.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span className="text-muted-foreground">Total Sell</span>
+                  <span className="font-semibold text-foreground">${totalSell.toFixed(2)}</span>
+                </div>
+                <div className="border-t border-border my-1" />
+                <div className="flex justify-between text-xs">
+                  <span className="text-muted-foreground">Profit</span>
+                  <span className={`font-bold ${profit >= 0 ? 'text-accent' : 'text-destructive'}`}>
+                    ${profit.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span className="text-muted-foreground">Margin</span>
+                  <span className={`font-semibold ${margin >= 0 ? 'text-accent' : 'text-destructive'}`}>
+                    {margin.toFixed(1)}%
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between text-xs">
-              <span className="text-muted-foreground">Total</span>
-              <span className="font-bold text-foreground">${totalCharges.toFixed(2)}</span>
-            </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
 
     </div>
