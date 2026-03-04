@@ -39,50 +39,12 @@ export default function ConsolStep6Review() {
         <div className="space-y-4">
           <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Master B/L Configuration</h4>
 
-          <div className="space-y-3">
-            <Label className="text-xs font-medium">Master BL Type <span className="text-destructive">*</span></Label>
-            <RadioGroup
-              value={masterBLType}
-              onValueChange={(v) => {
-                setValue('masterBLType', v as any, { shouldValidate: true });
-                if (v === 'Seaway Bill') {
-                  setValue('numberOfOriginalBLs', 0);
-                }
-              }}
-              className="flex gap-4"
-            >
-              <div className="flex items-center gap-2">
-                <RadioGroupItem value="Seaway Bill" id="seaway" />
-                <Label htmlFor="seaway" className="text-sm cursor-pointer">Seaway Bill</Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <RadioGroupItem value="Original BL" id="original" />
-                <Label htmlFor="original" className="text-sm cursor-pointer">Original BL</Label>
-              </div>
-            </RadioGroup>
-            {errors.masterBLType && <p className="text-[11px] text-destructive">{errors.masterBLType.message}</p>}
-          </div>
-
-          {masterBLType === 'Original BL' && (
-            <div className="space-y-1.5">
-              <Label className="text-xs font-medium">Number of Original BLs</Label>
-              <Input
-                type="number"
-                min={0}
-                max={3}
-                className="w-32"
-                {...register('numberOfOriginalBLs', { valueAsNumber: true })}
-                onChange={(e) => {
-                  const val = Math.min(3, Math.max(0, Number(e.target.value)));
-                  setValue('numberOfOriginalBLs', val);
-                }}
-              />
+          <div className="rounded-lg border border-border bg-muted/30 p-4">
+            <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+              <CheckCircle2 className="h-4 w-4 text-accent" />
+              Seaway Bill
             </div>
-          )}
-
-          <div className="flex items-center gap-3">
-            <Switch checked={telexRelease} onCheckedChange={(v) => setValue('telexRelease', v)} />
-            <Label className="text-sm">Telex Release</Label>
+            <p className="text-xs text-muted-foreground mt-1">MBL will be issued as a Seaway Bill.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
