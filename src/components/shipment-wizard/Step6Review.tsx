@@ -4,7 +4,7 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/comp
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, CalendarIcon } from 'lucide-react';
 import { BL_TYPES, type ShipmentFormData } from '@/types/shipment-form.types';
 
 export default function Step6Review() {
