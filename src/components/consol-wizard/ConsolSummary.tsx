@@ -17,11 +17,20 @@ export default function ConsolSummary() {
   const totalCbm = shipments.reduce((s, sh) => s + sh.cbm, 0);
   const totalCharges = charges.reduce((s, c) => s + (c.amount || 0), 0);
 
-  const capacity = data.containerType ? CONTAINER_CAPACITY[data.containerType] : null;
-  const cbmPercent = capacity ? Math.min(100, (totalCbm / capacity.maxCbm) * 100) : 0;
-  const weightPercent = capacity ? Math.min(100, (totalWeight / capacity.maxWeight) * 100) : 0;
-  const isOverCbm = capacity ? totalCbm > capacity.maxCbm : false;
-  const isOverWeight = capacity ? totalWeight > capacity.maxWeight : false;
+  const containers = data.containers || [];
+  const totalCapacity = containers.reduce(
+    (acc, c) => {
+      const cap = c.containerType ? CONTAINER_CAPACITY[c.containerType] : null;
+      if (cap) { acc.maxCbm += cap.maxCbm; acc.maxWeight += cap.maxWeight; }
+      return acc;
+    },
+    { maxCbm: 0, maxWeight: 0 }
+  );
+  const hasCapacity = totalCapacity.maxCbm > 0;
+  const cbmPercent = hasCapacity ? Math.min(100, (totalCbm / totalCapacity.maxCbm) * 100) : 0;
+  const weightPercent = hasCapacity ? Math.min(100, (totalWeight / totalCapacity.maxWeight) * 100) : 0;
+  const isOverCbm = hasCapacity && totalCbm > totalCapacity.maxCbm;
+  const isOverWeight = hasCapacity && totalWeight > totalCapacity.maxWeight;
 
   return (
     <div className="rounded-xl border border-border bg-card overflow-hidden">
