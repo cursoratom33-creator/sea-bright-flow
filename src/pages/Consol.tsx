@@ -3,7 +3,6 @@ import { Package, Plus, TrendingDown, TrendingUp, DollarSign } from 'lucide-reac
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 const mockConsols = [
   { id: 'CON-2024-001', type: 'LCL', origin: 'CNSHA', destination: 'USLAX', status: 'open', shipments: 5, vessel: 'MSC ANNA', etd: '2026-03-05', totalBuy: 12500, totalSell: 18200, profit: 5700 },
