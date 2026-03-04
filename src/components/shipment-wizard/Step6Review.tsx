@@ -148,17 +148,19 @@ export default function Step6Review() {
             </div>
           }
 
-          {/* Place of Issue & Issue Date */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <Label className="text-xs font-medium">Place of Issue</Label>
-              <Input {...register('placeOfIssue')} placeholder="Place of issue" />
+          {/* Place of Issue & Issue Date - only for Original */}
+          {hblType === 'original' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium">Place of Issue</Label>
+                <Input {...register('placeOfIssue')} placeholder="Place of issue" />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium">Issue Date</Label>
+                <Input type="date" {...register('issueDate')} />
+              </div>
             </div>
-            <div className="space-y-1.5">
-              <Label className="text-xs font-medium">Issue Date</Label>
-              <Input type="date" {...register('issueDate')} />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>);
