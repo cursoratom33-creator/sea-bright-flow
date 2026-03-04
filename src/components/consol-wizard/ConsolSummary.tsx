@@ -107,7 +107,7 @@ export default function ConsolSummary() {
         </div>
 
         {/* Container Utilization */}
-        {capacity && (
+        {hasCapacity && (
           <div className="space-y-3">
             <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Container Load</span>
 

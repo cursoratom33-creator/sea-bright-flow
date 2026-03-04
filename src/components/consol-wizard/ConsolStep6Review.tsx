@@ -85,16 +85,20 @@ export default function ConsolStep6Review() {
               <ReviewRow label="ETA" value={data.eta} />
             </div>
 
-            {/* Container */}
+            {/* Containers */}
             <div className="rounded-lg border border-border p-4 space-y-2">
               <div className="flex items-center gap-1.5 mb-2">
                 <Container className="h-3.5 w-3.5 text-accent" />
-                <span className="text-xs font-semibold">Container</span>
+                <span className="text-xs font-semibold">Containers ({(data.containers || []).length})</span>
               </div>
-              <ReviewRow label="Type" value={data.containerType} />
-              <ReviewRow label="Quantity" value={String(data.containerQuantity || 0)} />
-              <ReviewRow label="Container No." value={data.containerNumber || '—'} />
-              <ReviewRow label="Seal No." value={data.sealNumber || '—'} />
+              {(data.containers || []).map((c, i) => (
+                <div key={c.id || i} className="flex items-center gap-3 text-xs">
+                  <span className="font-medium text-foreground">{c.containerType}</span>
+                  <span className="text-muted-foreground">{c.containerNumber || '—'}</span>
+                  <span className="text-muted-foreground">Seal: {c.sealNumber || '—'}</span>
+                </div>
+              ))}
+              {(data.containers || []).length === 0 && <p className="text-xs text-muted-foreground">No containers</p>}
             </div>
 
             {/* Shipments & Charges */}
