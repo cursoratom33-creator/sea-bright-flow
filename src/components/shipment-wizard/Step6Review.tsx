@@ -97,7 +97,7 @@ export default function Step6Review() {
                     <CheckCircle2 className="h-4 w-4 text-accent" />
                     Sea Way Bill
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">HBL will be issued as a Sea Way Bill.</p>
+                  <p className="text-xs text-muted-foreground mt-1">HBL will be issued as a Seaway Bill.</p>
                 </div>
             }
 
