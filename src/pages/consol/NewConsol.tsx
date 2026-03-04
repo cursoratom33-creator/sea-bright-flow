@@ -38,6 +38,7 @@ export default function NewConsolPage() {
       salesPerson: '',
       portOfLoading: '',
       portOfDischarge: '',
+      transshipmentPort: '',
       finalDestination: '',
       placeOfReceipt: '',
       vesselName: '',

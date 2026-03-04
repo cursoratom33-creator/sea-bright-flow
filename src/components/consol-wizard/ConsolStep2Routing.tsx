@@ -26,7 +26,7 @@ export default function ConsolStep2Routing() {
       <div className="p-5 space-y-5">
         {/* Route Visual */}
         <div className="rounded-lg bg-muted/30 border border-border p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1.5">
               <Label className="text-xs font-medium">Port of Loading (POL) <span className="text-destructive">*</span></Label>
               <Select onValueChange={(v) => setValue('portOfLoading', v, { shouldValidate: true })}>
@@ -36,6 +36,16 @@ export default function ConsolStep2Routing() {
                 </SelectContent>
               </Select>
               {errors.portOfLoading && <p className="text-[11px] text-destructive">{errors.portOfLoading.message}</p>}
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs font-medium">Transshipment Port</Label>
+              <Select onValueChange={(v) => setValue('transshipmentPort', v)}>
+                <SelectTrigger><SelectValue placeholder="Select T/S port" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">None</SelectItem>
+                  {MOCK_PORTS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-1.5">
               <Label className="text-xs font-medium">Port of Discharge (POD) <span className="text-destructive">*</span></Label>
