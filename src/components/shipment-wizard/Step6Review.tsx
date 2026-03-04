@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -16,10 +16,15 @@ export default function Step6Review() {
 
   const isDirectMasterBL = blType === 'Direct Master B/L';
 
-  // Derive HBL type from state
-  const hblType = telexRelease ? 'swb' : (originalBLCount > 0 || nonNegotiableBLCount > 0) ? 'original' : '';
+  // Track HBL type with local state, initialized from form values
+  const [hblType, setHblType] = useState<string>(() => {
+    if (telexRelease) return 'swb';
+    if (originalBLCount > 0 || nonNegotiableBLCount > 0) return 'original';
+    return '';
+  });
 
   const handleHblTypeChange = (value: string) => {
+    setHblType(value);
     if (value === 'swb') {
       setValue('telexRelease', true);
       setValue('originalBLCount', 0);
