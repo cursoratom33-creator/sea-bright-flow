@@ -132,7 +132,7 @@ export const CONSOL_WIZARD_STEPS: ConsolWizardStep[] = [
 ];
 
 // Mock data for dropdowns
-export const MOCK_BRANCHES = ['Mumbai HQ', 'Delhi Branch', 'Chennai Branch', 'Kolkata Branch'];
+export const MOCK_BRANCHES = ['Chennai HQ', 'Mumbai Branch', 'Delhi Branch', 'Kolkata Branch'];
 export const MOCK_CARRIERS = ['MSC', 'Maersk', 'CMA CGM', 'Hapag-Lloyd', 'ONE', 'Evergreen', 'COSCO', 'Yang Ming'];
 export const MOCK_SALES_PERSONS = ['Rajesh Kumar', 'Priya Sharma', 'Amit Patel', 'Sneha Gupta'];
 export const MOCK_PORTS = ['INMUN - Mundra', 'INNSA - Nhava Sheva', 'INCHE - Chennai', 'CNSHA - Shanghai', 'CNNGB - Ningbo', 'SGSIN - Singapore', 'USLAX - Los Angeles', 'GBFXT - Felixstowe', 'DEHAM - Hamburg', 'AEJEA - Jebel Ali'];
