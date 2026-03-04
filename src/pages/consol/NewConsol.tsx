@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, Save, X, Ship, ChevronRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { consolFormSchema, type ConsolFormData, CONSOL_WIZARD_STEPS } from '@/types/consol-form.types';
+import { consolFormSchema, type ConsolFormData, CONSOL_WIZARD_STEPS, CONTAINER_CAPACITY } from '@/types/consol-form.types';
 import ConsolStep1Info from '@/components/consol-wizard/ConsolStep1Info';
 import ConsolStep2Routing from '@/components/consol-wizard/ConsolStep2Routing';
 import ConsolStep3Container from '@/components/consol-wizard/ConsolStep3Container';
