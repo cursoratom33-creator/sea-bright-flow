@@ -42,7 +42,7 @@ export default function ConsolStep2Routing() {
               <Select onValueChange={(v) => setValue('transshipmentPort', v)}>
                 <SelectTrigger><SelectValue placeholder="Select T/S port" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">None</SelectItem>
+                  <SelectItem value="none">None</SelectItem>
                   {MOCK_PORTS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
                 </SelectContent>
               </Select>
