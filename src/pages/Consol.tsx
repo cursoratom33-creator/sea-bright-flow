@@ -4,9 +4,9 @@ import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 
 const mockConsols = [
-  { id: 'CON-2024-001', type: 'LCL', origin: 'CNSHA', destination: 'USLAX', status: 'open', shipments: 5, vessel: 'MSC ANNA', etd: '2026-03-05' },
-  { id: 'CON-2024-002', type: 'LCL', origin: 'CNNGB', destination: 'GBFXT', status: 'closed', shipments: 8, vessel: 'EVER GIVEN', etd: '2026-02-28' },
-  { id: 'CON-2024-003', type: 'FCL', origin: 'JPYOK', destination: 'DEHAM', status: 'shipped', shipments: 3, vessel: 'CMA CGM MARCO', etd: '2026-02-20' },
+  { id: 'CON-2024-001', type: 'LCL', origin: 'CNSHA', destination: 'USLAX', status: 'open', shipments: 5, vessel: 'MSC ANNA', etd: '2026-03-05', totalBuy: 12500, totalSell: 18200, profit: 5700 },
+  { id: 'CON-2024-002', type: 'LCL', origin: 'CNNGB', destination: 'GBFXT', status: 'closed', shipments: 8, vessel: 'EVER GIVEN', etd: '2026-02-28', totalBuy: 22000, totalSell: 31500, profit: 9500 },
+  { id: 'CON-2024-003', type: 'FCL', origin: 'JPYOK', destination: 'DEHAM', status: 'shipped', shipments: 3, vessel: 'CMA CGM MARCO', etd: '2026-02-20', totalBuy: 8900, totalSell: 11200, profit: 2300 },
 ];
 
 export default function ConsolPage() {
