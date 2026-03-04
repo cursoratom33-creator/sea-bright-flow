@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { Ship, MapPin, Container, Package, DollarSign, ArrowRight, Anchor, AlertTriangle } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import type { ConsolFormData } from '@/types/consol-form.types';
 import { CONTAINER_CAPACITY } from '@/types/consol-form.types';
 
@@ -141,6 +142,13 @@ export default function ConsolSummary() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Attach HBL */}
+      <div className="p-4 border-t border-border">
+        <Button type="button" variant="outline" className="w-full border-dashed border-primary/40 text-primary hover:bg-primary/5 h-10">
+          <Package className="mr-2 h-4 w-4" /> Attach HBL
+        </Button>
       </div>
     </div>
   );
