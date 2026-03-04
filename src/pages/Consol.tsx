@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Package, Plus } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ const mockConsols = [
 ];
 
 export default function ConsolPage() {
+  const navigate = useNavigate();
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex items-center justify-between">
@@ -16,7 +18,7 @@ export default function ConsolPage() {
           <h1 className="text-2xl font-bold text-foreground">Consol Management</h1>
           <p className="text-sm text-muted-foreground">Consolidate and manage shipment groups</p>
         </div>
-        <Button size="sm"><Plus className="mr-1.5 h-4 w-4" /> New Consol</Button>
+        <Button size="sm" onClick={() => navigate('/consol/new')}><Plus className="mr-1.5 h-4 w-4" /> Create Consol</Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
