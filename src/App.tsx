@@ -13,6 +13,7 @@ import DashboardPage from "./pages/Dashboard";
 import ShipmentsPage from "./pages/Shipments";
 import NewShipmentPage from "./pages/shipments/NewShipment";
 import ConsolPage from "./pages/Consol";
+import NewConsolPage from "./pages/consol/NewConsol";
 import DocumentsPage from "./pages/Documents";
 import BillingPage from "./pages/Billing";
 import ReportsPage from "./pages/Reports";
