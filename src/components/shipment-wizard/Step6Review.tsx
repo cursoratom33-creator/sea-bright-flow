@@ -81,7 +81,7 @@ export default function Step6Review() {
                 <RadioGroup onValueChange={handleHblTypeChange} value={hblType} className="space-y-2 mt-2">
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="swb" id="hbl-type-swb" />
-                    <Label htmlFor="hbl-type-swb" className="cursor-pointer text-sm">Sea Way Bill</Label>
+                    <Label htmlFor="hbl-type-swb" className="cursor-pointer text-sm">Seaway Bill</Label>
                   </div>
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="original" id="hbl-type-original" />
@@ -95,7 +95,7 @@ export default function Step6Review() {
             <div className="rounded-lg border border-border bg-muted/30 p-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-accent" />
-                    Sea Way Bill
+                    Seaway Bill
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">HBL will be issued as a Seaway Bill.</p>
                 </div>
