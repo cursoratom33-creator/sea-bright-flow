@@ -80,6 +80,7 @@ export const consolStep2Schema = z.object({
 export const consolContainerSchema = z.object({
   id: z.string(),
   containerType: z.enum(CONSOL_CONTAINER_TYPES, { required_error: 'Container type is required' }),
+  quantity: z.number().min(1, 'At least 1').default(1),
   containerNumber: z.string().optional(),
   sealNumber: z.string().optional(),
 });
