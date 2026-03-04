@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import { Ship, MapPin, Container, Package, DollarSign, ArrowRight, Anchor, AlertTriangle } from 'lucide-react';
+import { Ship, MapPin, Container, Package, DollarSign, ArrowRight, Anchor, AlertTriangle, TrendingDown, TrendingUp } from 'lucide-react';
+import { formatCurrency } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import type { ConsolFormData } from '@/types/consol-form.types';
