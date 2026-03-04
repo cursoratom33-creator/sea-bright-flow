@@ -12,28 +12,30 @@ export default function Step6Review() {
   const { control, watch, setValue } = useFormContext<ShipmentFormData>();
   const blType = watch('blType');
   const hblRequired = watch('hblRequired');
-  const mblRequired = watch('mblRequired');
-  const originalBLCount = watch('originalBLCount') || 0;
-  const nonNegotiableBLCount = watch('nonNegotiableBLCount') || 0;
+  const telexRelease = watch('telexRelease');
 
   const isDirectMasterBL = blType === 'Direct Master B/L';
 
-  // Derive a single selection value for the radio group
-  const blRequirement = hblRequired ? 'hbl' : mblRequired ? 'mbl' : '';
+  // Derive HBL type: 'swb' for Sea Way Bill, 'original' for Original
+  const hblType = telexRelease ? 'swb' : (watch('originalBLCount') > 0 || watch('nonNegotiableBLCount') > 0) ? 'original' : '';
 
-  const handleBLRequirementChange = (value: string) => {
-    if (value === 'hbl') {
-      setValue('hblRequired', true);
-      setValue('mblRequired', false);
-      setValue('telexRelease', false);
-    } else if (value === 'mbl') {
-      setValue('mblRequired', true);
-      setValue('hblRequired', false);
+  const handleHblTypeChange = (value: string) => {
+    if (value === 'swb') {
+      setValue('telexRelease', true);
       setValue('originalBLCount', 0);
       setValue('nonNegotiableBLCount', 0);
+    } else if (value === 'original') {
       setValue('telexRelease', false);
     }
   };
+
+  // Auto-enable HBL when Direct Master B/L is selected
+  React.useEffect(() => {
+    if (isDirectMasterBL) {
+      setValue('hblRequired', true);
+      setValue('mblRequired', false);
+    }
+  }, [isDirectMasterBL, setValue]);
 
   return (
     <div className="space-y-6">
