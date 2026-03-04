@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import { Ship, MapPin, Container, Package, DollarSign, ArrowRight, Anchor, AlertTriangle } from 'lucide-react';
+import { Ship, MapPin, Container, Package, DollarSign, ArrowRight, Anchor, AlertTriangle, TrendingDown, TrendingUp } from 'lucide-react';
+import { formatCurrency } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import type { ConsolFormData } from '@/types/consol-form.types';
@@ -130,8 +131,8 @@ export default function ConsolSummary() {
         )}
 
         {/* Charges */}
-        {totalCharges > 0 && (() => {
-          const totalBuy = charges.filter(c => c.chargeType === 'buy').reduce((s, c) => s + (c.amount || 0), 0);
+        {(() => {
+          const totalBuy = charges.filter(c => (c.chargeType || 'buy') === 'buy').reduce((s, c) => s + (c.amount || 0), 0);
           const totalSell = charges.filter(c => c.chargeType === 'sell').reduce((s, c) => s + (c.amount || 0), 0);
           const profit = totalSell - totalBuy;
           const margin = totalSell > 0 ? (profit / totalSell) * 100 : 0;
@@ -141,27 +142,26 @@ export default function ConsolSummary() {
                 <DollarSign className="h-3.5 w-3.5 text-primary" />
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Commercial</span>
               </div>
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Total Buy</span>
-                  <span className="font-semibold text-foreground">${totalBuy.toFixed(2)}</span>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="rounded-lg border border-border bg-muted/30 p-2.5 text-center">
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Total Buy (Cost)</p>
+                  <p className="text-sm font-bold text-foreground flex items-center justify-center gap-1">
+                    <TrendingDown className="h-3 w-3 text-destructive" />
+                    {formatCurrency(totalBuy)}
+                  </p>
                 </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Total Sell</span>
-                  <span className="font-semibold text-foreground">${totalSell.toFixed(2)}</span>
+                <div className="rounded-lg border border-border bg-muted/30 p-2.5 text-center">
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Total Sell (Revenue)</p>
+                  <p className="text-sm font-bold text-foreground flex items-center justify-center gap-1">
+                    <TrendingUp className="h-3 w-3 text-accent" />
+                    {formatCurrency(totalSell)}
+                  </p>
                 </div>
-                <div className="border-t border-border my-1" />
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Profit</span>
-                  <span className={`font-bold ${profit >= 0 ? 'text-accent' : 'text-destructive'}`}>
-                    ${profit.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Margin</span>
-                  <span className={`font-semibold ${margin >= 0 ? 'text-accent' : 'text-destructive'}`}>
-                    {margin.toFixed(1)}%
-                  </span>
+                <div className={`rounded-lg border p-2.5 text-center ${profit >= 0 ? 'border-accent/30 bg-accent/5' : 'border-destructive/30 bg-destructive/5'}`}>
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Profit / Margin</p>
+                  <p className={`text-sm font-bold ${profit >= 0 ? 'text-accent' : 'text-destructive'}`}>
+                    {formatCurrency(profit)} <span className="text-[10px] font-semibold">({margin.toFixed(1)}%)</span>
+                  </p>
                 </div>
               </div>
             </div>
