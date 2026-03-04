@@ -69,9 +69,14 @@ export default function ConsolStep4Shipments() {
               <p className="text-[11px] text-muted-foreground">Attach LCL shipments to this consol</p>
             </div>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={autoSuggest} className="text-accent border-accent/30 hover:bg-accent/5">
-            <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Auto Suggest
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button type="button" variant="outline" size="sm" onClick={autoSuggest} className="text-accent border-accent/30 hover:bg-accent/5">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Auto Suggest
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={() => document.getElementById('shipment-search')?.focus()}>
+              <Package className="mr-1.5 h-3.5 w-3.5" /> Attach HBL
+            </Button>
+          </div>
         </div>
       </div>
 
