@@ -154,7 +154,8 @@ export default function Step6Review() {
                   </div>
                 </div>
             }
-        </div>
+            </div>
+          }
       </div>
     </div>);
 
