@@ -4,11 +4,11 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/comp
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, CalendarIcon } from 'lucide-react';
 import { BL_TYPES, type ShipmentFormData } from '@/types/shipment-form.types';
 
 export default function Step6Review() {
-  const { control, watch, setValue } = useFormContext<ShipmentFormData>();
+  const { control, watch, setValue, register } = useFormContext<ShipmentFormData>();
   const blType = watch('blType');
   const telexRelease = watch('telexRelease');
   const originalBLCount = watch('originalBLCount') || 0;
@@ -147,6 +147,18 @@ export default function Step6Review() {
             }
             </div>
           }
+
+          {/* Place of Issue & Issue Date */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <Label className="text-xs font-medium">Place of Issue</Label>
+              <Input {...register('placeOfIssue')} placeholder="Place of issue" />
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs font-medium">Issue Date</Label>
+              <Input type="date" {...register('issueDate')} />
+            </div>
+          </div>
         </div>
       </div>
     </div>);

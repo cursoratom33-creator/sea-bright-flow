@@ -141,6 +141,8 @@ export const step6Schema = z.object({
   telexRelease: z.boolean().default(false),
   originalBLCount: z.number().min(0).default(0),
   nonNegotiableBLCount: z.number().min(0).default(0),
+  placeOfIssue: z.string().optional(),
+  issueDate: z.string().optional(),
 }).refine(data => {
   if (data.hblRequired) {
     return data.originalBLCount > 0 && data.originalBLCount <= 3;
