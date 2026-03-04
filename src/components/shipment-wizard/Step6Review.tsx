@@ -1,43 +1,44 @@
+import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { FileText, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { BL_TYPES, type ShipmentFormData } from '@/types/shipment-form.types';
-
 
 export default function Step6Review() {
   const { control, watch, setValue } = useFormContext<ShipmentFormData>();
   const blType = watch('blType');
-  const hblRequired = watch('hblRequired');
-  const mblRequired = watch('mblRequired');
+  const telexRelease = watch('telexRelease');
   const originalBLCount = watch('originalBLCount') || 0;
   const nonNegotiableBLCount = watch('nonNegotiableBLCount') || 0;
 
   const isDirectMasterBL = blType === 'Direct Master B/L';
 
-  // Derive a single selection value for the radio group
-  const blRequirement = hblRequired ? 'hbl' : mblRequired ? 'mbl' : '';
+  // Derive HBL type from state
+  const hblType = telexRelease ? 'swb' : (originalBLCount > 0 || nonNegotiableBLCount > 0) ? 'original' : '';
 
-  const handleBLRequirementChange = (value: string) => {
-    if (value === 'hbl') {
-      setValue('hblRequired', true);
-      setValue('mblRequired', false);
-      setValue('telexRelease', false);
-    } else if (value === 'mbl') {
-      setValue('mblRequired', true);
-      setValue('hblRequired', false);
+  const handleHblTypeChange = (value: string) => {
+    if (value === 'swb') {
+      setValue('telexRelease', true);
       setValue('originalBLCount', 0);
       setValue('nonNegotiableBLCount', 0);
+    } else if (value === 'original') {
       setValue('telexRelease', false);
     }
   };
 
+  // Auto-enable HBL when Direct Master B/L is selected
+  useEffect(() => {
+    if (isDirectMasterBL) {
+      setValue('hblRequired', true);
+      setValue('mblRequired', false);
+    }
+  }, [isDirectMasterBL, setValue]);
+
   return (
     <div className="space-y-6">
-      {/* Document Options */}
       <div className="rounded-xl border border-border bg-card p-6">
         <h2 className="text-lg font-semibold text-foreground mb-1">5. Documents & Review</h2>
         <p className="text-sm text-muted-foreground mb-6">Set document preferences and review your shipment</p>
@@ -61,36 +62,42 @@ export default function Step6Review() {
             </FormItem>
           } />
 
-          {/* Direct Master B/L: Choose HBL or MBL */}
+          {/* Direct Master B/L → HBL is mandatory, choose HBL Type */}
           {isDirectMasterBL && (
             <div className="space-y-4 border-t border-border pt-4">
+              <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <CheckCircle2 className="h-4 w-4 text-accent" />
+                HBL Required (mandatory for Direct Master B/L)
+              </div>
+
+              {/* HBL Type: Sea Way Bill or Original */}
               <FormItem>
-                <FormLabel>B/L Requirement <span className="text-destructive">*</span></FormLabel>
-                <RadioGroup onValueChange={handleBLRequirementChange} value={blRequirement} className="space-y-2 mt-2">
+                <FormLabel>HBL Type <span className="text-destructive">*</span></FormLabel>
+                <RadioGroup onValueChange={handleHblTypeChange} value={hblType} className="space-y-2 mt-2">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="hbl" id="bl-req-hbl" />
-                    <Label htmlFor="bl-req-hbl" className="cursor-pointer text-sm">HBL Required</Label>
+                    <RadioGroupItem value="swb" id="hbl-type-swb" />
+                    <Label htmlFor="hbl-type-swb" className="cursor-pointer text-sm">Sea Way Bill</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="mbl" id="bl-req-mbl" />
-                    <Label htmlFor="bl-req-mbl" className="cursor-pointer text-sm">MBL Required</Label>
+                    <RadioGroupItem value="original" id="hbl-type-original" />
+                    <Label htmlFor="hbl-type-original" className="cursor-pointer text-sm">Original</Label>
                   </div>
                 </RadioGroup>
               </FormItem>
 
-              {/* MBL Selected → Sea Way Bill */}
-              {mblRequired && (
+              {/* Sea Way Bill info */}
+              {hblType === 'swb' && (
                 <div className="rounded-lg border border-border bg-muted/30 p-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-accent" />
                     Sea Way Bill
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">Master B/L will be issued as a Sea Way Bill.</p>
+                  <p className="text-xs text-muted-foreground mt-1">HBL will be issued as a Sea Way Bill (non-negotiable).</p>
                 </div>
               )}
 
-              {/* HBL Selected → Original with B/L counts */}
-              {hblRequired && (
+              {/* Original → enter copy counts */}
+              {hblType === 'original' && (
                 <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-accent" />
@@ -100,7 +107,7 @@ export default function Step6Review() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField control={control} name="originalBLCount" render={({ field }) =>
                       <FormItem>
-                        <FormLabel>Original B/L Count <span className="text-destructive">*</span></FormLabel>
+                        <FormLabel>No. of Original Copies <span className="text-destructive">*</span></FormLabel>
                         <FormControl>
                           <Input
                             type="number"
@@ -116,7 +123,7 @@ export default function Step6Review() {
                     } />
                     <FormField control={control} name="nonNegotiableBLCount" render={({ field }) =>
                       <FormItem>
-                        <FormLabel>Non-Negotiable B/L Count <span className="text-destructive">*</span></FormLabel>
+                        <FormLabel>No. of Negotiable Copies <span className="text-destructive">*</span></FormLabel>
                         <FormControl>
                           <Input
                             type="number"
