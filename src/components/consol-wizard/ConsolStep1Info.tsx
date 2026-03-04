@@ -39,11 +39,6 @@ export default function ConsolStep1Info() {
             {errors.consolType && <p className="text-[11px] text-destructive">{errors.consolType.message}</p>}
           </div>
 
-          {/* Consol Number */}
-          <div className="space-y-1.5">
-            <Label className="text-xs font-medium">Consol Number</Label>
-            <Input {...register('consolNumber')} readOnly className="bg-muted/50" />
-          </div>
 
           {/* Branch Office */}
           <div className="space-y-1.5">
