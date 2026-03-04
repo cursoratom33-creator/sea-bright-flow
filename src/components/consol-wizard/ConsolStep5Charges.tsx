@@ -53,7 +53,7 @@ export default function ConsolStep5Charges() {
             <DollarSign className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <h3 className="font-semibold text-foreground text-sm">Freight Charges</h3>
+            <h3 className="font-semibold text-foreground text-sm">Commercial Details</h3>
             <p className="text-[11px] text-muted-foreground">Manage buy costs, sell revenue, and profit margins</p>
           </div>
         </div>
