@@ -136,7 +136,7 @@ export const CONSOL_WIZARD_STEPS: ConsolWizardStep[] = [
 export const MOCK_BRANCHES = ['Chennai HQ', 'Mumbai Branch', 'Delhi Branch', 'Kolkata Branch'];
 export const MOCK_CARRIERS = ['MSC', 'Maersk', 'CMA CGM', 'Hapag-Lloyd', 'ONE', 'Evergreen', 'COSCO', 'Yang Ming'];
 export const MOCK_SALES_PERSONS = ['Rajesh Kumar', 'Priya Sharma', 'Amit Patel', 'Sneha Gupta'];
-export const MOCK_PORTS = ['INMUN - Mundra', 'INNSA - Nhava Sheva', 'INMAA - Chennai', 'CNSHA - Shanghai', 'CNNGB - Ningbo', 'SGSIN - Singapore', 'USLAX - Los Angeles', 'USNYC - New York', 'GBFXT - Felixstowe', 'DEHAM - Hamburg', 'AEJEA - Jebel Ali'];
+export const MOCK_PORTS = ['INMUN - Mundra', 'INNSA - Nhava Sheva', 'INMAA - Chennai', 'LKCMB - Colombo', 'CNSHA - Shanghai', 'CNNGB - Ningbo', 'SGSIN - Singapore', 'USLAX - Los Angeles', 'USNYC - New York', 'GBFXT - Felixstowe', 'DEHAM - Hamburg', 'AEJEA - Jebel Ali'];
 export const MOCK_VESSELS = ['MSC ANNA', 'EVER GIVEN', 'CMA CGM MARCO POLO', 'MAERSK ELBA', 'ONE STORK'];
 
 export const MOCK_AVAILABLE_SHIPMENTS: ConsolShipment[] = [
