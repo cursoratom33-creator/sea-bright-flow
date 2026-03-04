@@ -49,25 +49,25 @@ export default function ConsolPage() {
                 <span className="text-muted-foreground">ETD</span>
                 <span className="text-foreground">{c.etd}</span>
               </div>
-              <div className="border-t border-border pt-3 mt-2 grid grid-cols-1 gap-2">
-                <div className="rounded-lg border border-border bg-muted/30 p-2.5 text-center">
-                  <p className="text-[10px] text-muted-foreground mb-0.5">Total Buy (Cost)</p>
-                  <p className="text-sm font-bold text-foreground flex items-center justify-center gap-1">
+              <div className="border-t border-border pt-3 mt-2 grid grid-cols-3 gap-2">
+                <div className="rounded-lg border border-border bg-muted/30 p-2 text-center">
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Buy</p>
+                  <p className="text-xs font-bold text-foreground flex items-center justify-center gap-1">
                     <TrendingDown className="h-3 w-3 text-destructive" />
                     {formatCurrency(c.totalBuy)}
                   </p>
                 </div>
-                <div className="rounded-lg border border-border bg-muted/30 p-2.5 text-center">
-                  <p className="text-[10px] text-muted-foreground mb-0.5">Total Sell (Revenue)</p>
-                  <p className="text-sm font-bold text-foreground flex items-center justify-center gap-1">
+                <div className="rounded-lg border border-border bg-muted/30 p-2 text-center">
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Sell</p>
+                  <p className="text-xs font-bold text-foreground flex items-center justify-center gap-1">
                     <TrendingUp className="h-3 w-3 text-accent" />
                     {formatCurrency(c.totalSell)}
                   </p>
                 </div>
-                <div className={`rounded-lg border p-2.5 text-center ${c.profit >= 0 ? 'border-accent/30 bg-accent/5' : 'border-destructive/30 bg-destructive/5'}`}>
-                  <p className="text-[10px] text-muted-foreground mb-0.5">Profit / Margin</p>
-                  <p className={`text-sm font-bold ${c.profit >= 0 ? 'text-accent' : 'text-destructive'}`}>
-                    {formatCurrency(c.profit)} <span className="text-[10px] font-semibold">({c.totalSell > 0 ? ((c.profit / c.totalSell) * 100).toFixed(1) : 0}%)</span>
+                <div className={`rounded-lg border p-2 text-center ${c.profit >= 0 ? 'border-accent/30 bg-accent/5' : 'border-destructive/30 bg-destructive/5'}`}>
+                  <p className="text-[10px] text-muted-foreground mb-0.5">Profit</p>
+                  <p className={`text-xs font-bold ${c.profit >= 0 ? 'text-accent' : 'text-destructive'}`}>
+                    {formatCurrency(c.profit)}
                   </p>
                 </div>
               </div>
