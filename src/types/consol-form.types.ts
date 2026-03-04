@@ -118,6 +118,7 @@ export const consolFormSchema = z.object({
   ...consolStep6Schema.shape,
 });
 
+export type ConsolContainer = z.infer<typeof consolContainerSchema>;
 export type ConsolShipment = z.infer<typeof consolShipmentSchema>;
 export type ConsolCharge = z.infer<typeof consolChargeSchema>;
 export type ConsolFormData = z.infer<typeof consolFormSchema>;
