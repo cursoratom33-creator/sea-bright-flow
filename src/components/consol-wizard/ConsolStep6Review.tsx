@@ -1,17 +1,14 @@
 import { useFormContext } from 'react-hook-form';
-import { FileText, CheckCircle2, MapPin, Container, Package, DollarSign } from 'lucide-react';
+import { FileText, CheckCircle2, MapPin, Container, Package } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Switch } from '@/components/ui/switch';
 import type { ConsolFormData } from '@/types/consol-form.types';
-import { CONTAINER_CAPACITY } from '@/types/consol-form.types';
 
 export default function ConsolStep6Review() {
-  const { register, setValue, watch, formState: { errors } } = useFormContext<ConsolFormData>();
-  const masterBLType = watch('masterBLType');
-  const telexRelease = watch('telexRelease');
+  const { register, watch } = useFormContext<ConsolFormData>();
   const data = watch();
+  const shipments = data.shipments || [];
+  const charges = data.charges || [];
   const shipments = data.shipments || [];
   const charges = data.charges || [];
 
