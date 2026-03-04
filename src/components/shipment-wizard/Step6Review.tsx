@@ -121,7 +121,6 @@ export default function Step6Review() {
                       className="w-full"
                       {...field}
                       onChange={(e) => field.onChange(Math.min(3, Math.max(0, Number(e.target.value))))} />
-                    
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -137,30 +136,24 @@ export default function Step6Review() {
                       className="w-full"
                       {...field}
                       onChange={(e) => field.onChange(Math.min(3, Math.max(0, Number(e.target.value))))} />
-                    
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                 } />
                   </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <Label className="text-xs font-medium">Place of Issue</Label>
+                      <Input {...register('placeOfIssue')} placeholder="Place of issue" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label className="text-xs font-medium">Issue Date</Label>
+                      <Input type="date" {...register('issueDate')} />
+                    </div>
+                  </div>
                 </div>
             }
-            </div>
-          }
-
-          {/* Place of Issue & Issue Date - only for Original */}
-          {hblType === 'original' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <Label className="text-xs font-medium">Place of Issue</Label>
-                <Input {...register('placeOfIssue')} placeholder="Place of issue" />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs font-medium">Issue Date</Label>
-                <Input type="date" {...register('issueDate')} />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>);
