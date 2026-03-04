@@ -8,7 +8,7 @@ import { CheckCircle2, CalendarIcon } from 'lucide-react';
 import { BL_TYPES, type ShipmentFormData } from '@/types/shipment-form.types';
 
 export default function Step6Review() {
-  const { control, watch, setValue } = useFormContext<ShipmentFormData>();
+  const { control, watch, setValue, register } = useFormContext<ShipmentFormData>();
   const blType = watch('blType');
   const telexRelease = watch('telexRelease');
   const originalBLCount = watch('originalBLCount') || 0;
