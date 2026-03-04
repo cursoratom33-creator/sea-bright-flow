@@ -47,10 +47,7 @@ export default function NewConsolPage() {
       eta: '',
       cutOffDate: '',
       carrierBookingNo: '',
-      containerType: undefined,
-      containerQuantity: 1,
-      containerNumber: '',
-      sealNumber: '',
+      containers: [{ id: crypto.randomUUID(), containerType: '20GP', containerNumber: '', sealNumber: '' }],
       shipments: [],
       charges: [],
       masterBLType: undefined,
@@ -88,10 +85,17 @@ export default function NewConsolPage() {
   };
 
   const onSubmit = (data: ConsolFormData) => {
-    const cap = data.containerType ? CONTAINER_CAPACITY[data.containerType] : null;
+    const totalCapacity = (data.containers || []).reduce(
+      (acc, c) => {
+        const cap = c.containerType ? CONTAINER_CAPACITY[c.containerType] : null;
+        if (cap) { acc.maxCbm += cap.maxCbm; acc.maxWeight += cap.maxWeight; }
+        return acc;
+      },
+      { maxCbm: 0, maxWeight: 0 }
+    );
     const totalCbm = (data.shipments || []).reduce((s, sh) => s + sh.cbm, 0);
     const totalWeight = (data.shipments || []).reduce((s, sh) => s + sh.grossWeight, 0);
-    if (cap && (totalCbm > cap.maxCbm || totalWeight > cap.maxWeight)) {
+    if (totalCapacity.maxCbm > 0 && (totalCbm > totalCapacity.maxCbm || totalWeight > totalCapacity.maxWeight)) {
       toast.error('Container capacity exceeded. Cannot create consol.');
       return;
     }

@@ -12,17 +12,25 @@ import { MOCK_AVAILABLE_SHIPMENTS, CONTAINER_CAPACITY } from '@/types/consol-for
 export default function ConsolStep4Shipments() {
   const { setValue, watch } = useFormContext<ConsolFormData>();
   const shipments = watch('shipments') || [];
-  const containerType = watch('containerType');
+  const containers = watch('containers') || [];
   const pol = watch('portOfLoading');
   const pod = watch('portOfDischarge');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedShipmentId, setSelectedShipmentId] = useState('');
 
-  const capacity = containerType ? CONTAINER_CAPACITY[containerType] : null;
+  // Aggregate capacity across all containers
+  const totalCapacity = containers.reduce(
+    (acc, c) => {
+      const cap = c.containerType ? CONTAINER_CAPACITY[c.containerType] : null;
+      if (cap) { acc.maxCbm += cap.maxCbm; acc.maxWeight += cap.maxWeight; }
+      return acc;
+    },
+    { maxCbm: 0, maxWeight: 0 }
+  );
   const totalPackages = shipments.reduce((s, sh) => s + sh.packages, 0);
   const totalWeight = shipments.reduce((s, sh) => s + sh.grossWeight, 0);
   const totalCbm = shipments.reduce((s, sh) => s + sh.cbm, 0);
-  const isOverCapacity = capacity ? totalCbm > capacity.maxCbm || totalWeight > capacity.maxWeight : false;
+  const isOverCapacity = totalCapacity.maxCbm > 0 ? totalCbm > totalCapacity.maxCbm || totalWeight > totalCapacity.maxWeight : false;
 
   const availableShipments = MOCK_AVAILABLE_SHIPMENTS.filter(
     s => !shipments.find(sh => sh.shipmentId === s.shipmentId)

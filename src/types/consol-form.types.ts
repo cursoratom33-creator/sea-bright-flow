@@ -76,12 +76,17 @@ export const consolStep2Schema = z.object({
   path: ['eta'],
 });
 
-// ── Step 3 ─────────────────────────────────────────────────
-export const consolStep3Schema = z.object({
+// ── Container Item ─────────────────────────────────────────
+export const consolContainerSchema = z.object({
+  id: z.string(),
   containerType: z.enum(CONSOL_CONTAINER_TYPES, { required_error: 'Container type is required' }),
-  containerQuantity: z.number().min(1, 'At least 1 container'),
   containerNumber: z.string().optional(),
   sealNumber: z.string().optional(),
+});
+
+// ── Step 3 ─────────────────────────────────────────────────
+export const consolStep3Schema = z.object({
+  containers: z.array(consolContainerSchema).min(1, 'At least 1 container is required'),
 });
 
 // ── Step 4 ─────────────────────────────────────────────────
@@ -113,6 +118,7 @@ export const consolFormSchema = z.object({
   ...consolStep6Schema.shape,
 });
 
+export type ConsolContainer = z.infer<typeof consolContainerSchema>;
 export type ConsolShipment = z.infer<typeof consolShipmentSchema>;
 export type ConsolCharge = z.infer<typeof consolChargeSchema>;
 export type ConsolFormData = z.infer<typeof consolFormSchema>;
