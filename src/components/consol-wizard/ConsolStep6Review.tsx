@@ -9,8 +9,6 @@ export default function ConsolStep6Review() {
   const data = watch();
   const shipments = data.shipments || [];
   const charges = data.charges || [];
-  const shipments = data.shipments || [];
-  const charges = data.charges || [];
 
   const totalPackages = shipments.reduce((s, sh) => s + sh.packages, 0);
   const totalWeight = shipments.reduce((s, sh) => s + sh.grossWeight, 0);
