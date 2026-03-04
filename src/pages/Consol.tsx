@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { Package, Plus } from 'lucide-react';
+import { Package, Plus, TrendingDown, TrendingUp, DollarSign } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { formatCurrency } from '@/lib/utils';
 
 const mockConsols = [
-  { id: 'CON-2024-001', type: 'LCL', origin: 'CNSHA', destination: 'USLAX', status: 'open', shipments: 5, vessel: 'MSC ANNA', etd: '2026-03-05' },
-  { id: 'CON-2024-002', type: 'LCL', origin: 'CNNGB', destination: 'GBFXT', status: 'closed', shipments: 8, vessel: 'EVER GIVEN', etd: '2026-02-28' },
-  { id: 'CON-2024-003', type: 'FCL', origin: 'JPYOK', destination: 'DEHAM', status: 'shipped', shipments: 3, vessel: 'CMA CGM MARCO', etd: '2026-02-20' },
+  { id: 'CON-2024-001', type: 'LCL', origin: 'CNSHA', destination: 'USLAX', status: 'open', shipments: 5, vessel: 'MSC ANNA', etd: '2026-03-05', totalBuy: 12500, totalSell: 18200, profit: 5700 },
+  { id: 'CON-2024-002', type: 'LCL', origin: 'CNNGB', destination: 'GBFXT', status: 'closed', shipments: 8, vessel: 'EVER GIVEN', etd: '2026-02-28', totalBuy: 22000, totalSell: 31500, profit: 9500 },
+  { id: 'CON-2024-003', type: 'FCL', origin: 'JPYOK', destination: 'DEHAM', status: 'shipped', shipments: 3, vessel: 'CMA CGM MARCO', etd: '2026-02-20', totalBuy: 8900, totalSell: 11200, profit: 2300 },
 ];
 
 export default function ConsolPage() {
@@ -47,6 +48,20 @@ export default function ConsolPage() {
               <div className="flex justify-between">
                 <span className="text-muted-foreground">ETD</span>
                 <span className="text-foreground">{c.etd}</span>
+              </div>
+              <div className="border-t border-border pt-2 mt-2 space-y-1.5">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><TrendingDown className="h-3 w-3 text-destructive" />Buy</span>
+                  <span className="text-foreground font-medium">{formatCurrency(c.totalBuy)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><TrendingUp className="h-3 w-3 text-accent" />Sell</span>
+                  <span className="text-foreground font-medium">{formatCurrency(c.totalSell)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground flex items-center gap-1"><DollarSign className="h-3 w-3 text-primary" />Profit</span>
+                  <span className={`font-semibold ${c.profit >= 0 ? 'text-accent' : 'text-destructive'}`}>{formatCurrency(c.profit)}</span>
+                </div>
               </div>
             </div>
           </div>
